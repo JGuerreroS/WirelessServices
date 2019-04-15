@@ -4,12 +4,16 @@
 
         include '../core/conexion.php';
 
-        $sql = "INSERT INTO clientes (nombre, apellidos, rut, id_plan, id_dispositivo, direccion, fecha_instalacion, fecha_pago, id_usuario, fecha_registro) VALUES ('$datos[nombre]', '$datos[apellido]', '$datos[rut]', $datos[plan], $datos[dispositivo], '$datos[direccion]', '$datos[fechaI]', '$datos[fechaP]', $datos[usuario], '$fecha')";
+        $sql = "INSERT INTO clientes (nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, direccion, fecha_instalacion, fecha_pago, id_usuario, fecha_registro) VALUES ('$datos[nombre]', '$datos[apellido]', '$datos[rut]', '$datos[telefono]', '$datos[email]', $datos[plan], $datos[dispositivo], '$datos[direccion]', '$datos[fechaI]', '$datos[fechaP]', $datos[usuario], '$fecha')";
 
         if(mysqli_query($conn, $sql)){
+
             return 1;
+
         }else{
+
             return 2;
+
         }
 
     }
@@ -122,17 +126,27 @@
         
     }
 
-    function verClientes(){
+    function verDispositivos(){
 
         include '../../../core/conexion.php';
 
-        $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, id_dispositivo, direccion FROM clientes c
-        INNER JOIN planes p ON (c.id_plan = p.id_plan)
-        INNER JOIN users u ON (c.id_usuario = u.Id)";
+        $sql = "SELECT modelo FROM modelos";
 
         $result = mysqli_query($conn, $sql);
 
         return $result;
+
+    }
+
+    function verClientes(){
+
+        include '../../../core/conexion.php';
+
+        $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion FROM clientes c
+        INNER JOIN planes p ON (c.id_plan = p.id_plan)
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)";
+
+        return $result = mysqli_query($conn, $sql);
 
     }
 
@@ -272,37 +286,41 @@
         
     }
 
-    function cargarObtencion($obtencion){
+    function cargarMarca($marca){
 
         include '../core/conexion.php';
 
-        $sql = "insert into obtencion (obtencion) values ('$obtencion')";
+        $sql = "INSERT INTO marcas (marca) values ('$marca')";
 
-        $result = mysqli_query($conn, $sql);
+        if(mysqli_query($conn, $sql)){
 
-        mysqli_close($conn);
+            mysqli_close($conn);
+            return 1;
 
-        return $msg = "<script>
-                            alert('Método registrado correctamente');
-                            window.location='../otros';
-                        </script>";
+        }else{
+
+            return 2;
+
+        }
 
     }
 
-    function cargarColor($color){
+    function cargarModelos($modelo){
 
         include '../core/conexion.php';
 
-        $sql = "INSERT INTO colores (color) values ('$color')";
+        $sql = "INSERT INTO modelos (modelo) VALUES ('$modelo')";
 
-        $result = mysqli_query($conn, $sql);
+        if(mysqli_query($conn, $sql)){
 
-        mysqli_close($conn);
+            mysqli_close($conn);
+            return 1;
 
-        return $msg = "<script>
-                            alert('Color registrado correctamente');
-                            window.location='../otros';
-                        </script>";
+        }else{
+
+            return 2;
+
+        }
 
     }
 

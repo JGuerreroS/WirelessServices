@@ -6,9 +6,14 @@
 
 <!-- Agregar aqui el contenido -->
 
-<!-- Button del modal -->
+<!-- Button Registrar plan -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otrosPlanModal">
     Registrar plan
+</button>
+
+<!-- Button Registrar modelo -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otrosModeloModal">
+    Registrar dispositivo
 </button>
 
 <hr>

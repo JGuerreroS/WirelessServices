@@ -35,7 +35,7 @@
             <td> <?php echo $ver[1]; ?> </td>
             <td class="text-center"> <?php echo $ver[2];?> </td>
             <td> <?php echo $ver[3];?> </td>
-            <td> <?php if($ver[4] == 1){ echo "ROUTER"; }else{ echo "ANTENA"; };?> </td>
+            <td> <?php echo $ver[4];?> </td>
             <td class="text-center">
                 <span class="btn btn-success btn-sm" onClick="verMas('<?php echo $id; ?>')" data-toggle="modal" data-target="#m_verMas">
                     <span class="icon-zoom-in"></span>

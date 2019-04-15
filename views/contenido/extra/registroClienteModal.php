@@ -24,25 +24,33 @@
 
                             <div class="form-group">
                                 <label>Apellidos</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido"
-                                    placeholder="Ingrese sus apellidos" required>
+                                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese sus apellidos" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Rut</label>
-                                <input type="text" class="form-control" id="rut" name="rut"
-                                    placeholder="Ingrese su Rut (ej: 12.345.678-k)" required>
+                                <input type="text" class="form-control" id="rut" name="rut" placeholder="Ingrese su Rut" required>
                             </div>
 
                             <div class="form-group">
-                                <label>Dirección</label>
-                                <textarea class="form-control" id="direccion" name="direccion" rows="2"
-                                    placeholder="Ingrese su dirección de habitación" required></textarea>
+                                <label>Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="N° de teléfono" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Correo electrónico" required>
                             </div>
 
                     </div>
 
                     <div class="col-6">
+
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <textarea class="form-control" id="direccion" name="direccion" rows="3"
+                                placeholder="Ingrese su dirección de habitación" required></textarea>
+                        </div>
 
                         <div class="form-group">
                             <label>Plan de internet</label>
@@ -73,20 +81,19 @@
 
                         <div class="form-group">
                             <label>Dispositivo</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="opcion" id="opcion"
-                                    value="1" checked>
-                                <label class="form-check-label">
-                                    Router
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="opcion" id="opcion"
-                                    value="2">
-                                <label class="form-check-label">
-                                    Antena
-                                </label>
-                            </div>
+                            <select class="select2 form-control custom-select" id="dispositivo" name="dispositivo">
+                                <option value="">Seleccione</option>
+                                <?php 
+                                    include 'core/conexion.php';
+                                    $sql = "SELECT id_modelo, modelo FROM modelos";
+                                    $result = mysqli_query($conn,$sql);
+                                    while ($ver = mysqli_fetch_array($result)) { 
+                                ?>
+
+                                <option value="<?php echo $ver[0]; ?>"> <?php echo $ver[1]; ?> </option>
+
+                                <?php } mysqli_free_result($result); mysqli_close($conn); ?>
+                            </select>
                         </div>
 
                         </form>
@@ -162,9 +169,17 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Dispositivo:</label>
-                                <select class="select2 form-control custom-select" name="rDispositivo" id="rDispositivo">
-                                    <option value="1">ROUTER</option>
-                                    <option value="2">ANTENA</option>
+                                <select class="select2 form-control custom-select" id="rDispositivo" name="rDispositivo">
+                                    <?php 
+                                        include 'core/conexion.php';
+                                        $sql = "SELECT id_modelo, modelo FROM modelos";
+                                        $result = mysqli_query($conn,$sql);
+                                        while ($ver = mysqli_fetch_array($result)) { 
+                                    ?>
+
+                                    <option value="<?php echo $ver[0]; ?>"> <?php echo $ver[1]; ?> </option>
+
+                                    <?php } mysqli_free_result($result); mysqli_close($conn); ?>
                                 </select>
                             </div>
                         </div>

@@ -43,11 +43,9 @@
 				<h3>Iniciar sesión</h3>
 				<div class="d-flex justify-content-end social_icon">
 					
-					<span style="font-size:50px"><a href="https://www.facebook.com/Cuerpo-de-Polic%C3%ADa-Nacional-Bolivariana-231509720527789/" class="icon-facebook2 icon-menu" target="_blank"></a></span>
+					<span style="font-size:50px"><a href="https://www.facebook.com/tecnoacostaing/" class="icon-facebook2 icon-menu" target="_blank"></a></span>
 					
-					<span style="font-size:55px"><a href="https://www.youtube.com/channel/UC6y3LxVw2iiuYnfVP-nAtEw" target="_blank" class="icon-youtube icon-menu"></a></span>
 					
-					<span style="font-size:50px"><a href="https://twitter.com/CPNB_VE?ref_src=twsrc%5Etfw%7Ctwcamp%5Eembeddedtimeline%7Ctwterm%5Eprofile%3ACPNB_VE&ref_url=http%3A%2F%2Fwww.policianacional.gob.ve%2F" target="_blank" class="icon-twitter icon-menu"></a></span>
 					
 				</div>
 			</div>
@@ -77,7 +75,7 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center">
-					<a href="#" class="olvidar">Olvidaste la contraseña?</a>
+					<!-- <a href="#" class="olvidar">Olvidaste la contraseña?</a> -->
 				</div>
 			</div>
 		</div>

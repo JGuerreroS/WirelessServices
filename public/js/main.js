@@ -10,6 +10,8 @@ $(document).ready(function() {
     $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
 
     /*Inicio de la Sección Otros en ready*/
+
+    // registrar planes de internet
     $("#guardarPlan").click(function (e) { 
         e.preventDefault();
         $.ajax({
@@ -27,6 +29,29 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+
+    // registrar modelo
+    $("#guardarModelo").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            url: "controllers/registroModelo.php",
+            data: $("#frmDispositivo").serialize(),
+            success: function (r) {
+                
+                if(r == 1){
+                    $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+                    $("#frmDispositivo")[0].reset();
+                    $("#otrosModeloModal").modal('hide');
+                    alertify.success('Dispositivo registrado correctamente');
+                }else{
+                    alertify.error('No se pudo insertar el registro');
+                    alert(r);
+                }
+            }
+        });
+        
     });
     /*Fin de la Sección Otros en ready*/
 
