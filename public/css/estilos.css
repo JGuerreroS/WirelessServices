@@ -1,0 +1,17 @@
+.jumbotron{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-image: url('../img/3.jpeg');
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    width: 100%;
+    height: 200px;
+}
+
+.container-header{
+    margin-bottom: -10px;
+}
+
+.botones_tabla{
+    text-align: center;
+}
