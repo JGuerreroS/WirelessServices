@@ -148,6 +148,22 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Teléfono:</label>
+                                <input type="text" name="rTelefono" id="rTelefono" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label>Correo:</label>
+                                <input type="text" name="rMail" id="rMail" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Plan:</label>

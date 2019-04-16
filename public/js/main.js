@@ -99,7 +99,7 @@ $(document).ready(function() {
     $("#editar").click(function (e) {
 
         $("#guardar").show();
-        $("#rNombre,#rApellidos,#rRut,#rPlan,#rDispositivo,#rDireccion").attr("disabled" , false);
+        $("#rNombre,#rApellidos,#rRut,#rMail,#rTelefono,#rPlan,#rDispositivo,#rDireccion").attr("disabled" , false);
         e.preventDefault();
         
     });
@@ -364,6 +364,8 @@ function verMas(id) {
         $("#rNombre").val(r.Nombre).attr("disabled" , true);
         $("#rApellidos").val(r.Apellidos).attr("disabled" , true);
         $("#rRut").val(r.Rut).attr("disabled" , true);
+        $("#rTelefono").val(r.Telefono).attr("disabled" , true);
+        $("#rMail").val(r.Email).attr("disabled" , true);
         $("#rPlan").val(r.Plan).attr("disabled" , true);
         $("#rDispositivo").val(r.Dispositivo).attr("disabled" , true);
         $("#rDireccion").val(r.Direccion).attr("disabled" , true);

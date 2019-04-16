@@ -22,12 +22,16 @@
 
         include '../core/conexion.php';
 
-        $sql = "UPDATE clientes SET nombre='$datos[nombre]', apellidos='$datos[apellidos]', rut='$datos[rut]', id_plan=$datos[plan], id_dispositivo=$datos[dispositivo], direccion='$datos[direccion]' where id=$datos[id_cliente]";
+        $sql = "UPDATE clientes SET nombre='$datos[nombre]', apellidos='$datos[apellidos]', rut='$datos[rut]', telefono='$datos[telefono]', email='$datos[email]', id_plan=$datos[plan], id_dispositivo=$datos[dispositivo], direccion='$datos[direccion]' where id=$datos[id_cliente]";
 
         if (mysqli_query($conn, $sql)) {
+            
             return 1;
+            
         } else {
+            
             return 2;
+            
         }
 
     }
@@ -154,7 +158,7 @@
 
         include '../core/conexion.php';
 
-        $sql = "SELECT c.id, nombre, apellidos, rut, id_plan, id_dispositivo, direccion, Name, c.fecha_registro FROM clientes c
+        $sql = "SELECT c.id, nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, direccion, Name, c.fecha_registro FROM clientes c
         INNER JOIN users u ON (c.id_usuario = u.Id) WHERE c.id = $cliente";
 
         $result = mysqli_query($conn, $sql);
@@ -167,11 +171,13 @@
             $datos->Nombre=$ver[1];
             $datos->Apellidos=$ver[2];
             $datos->Rut=$ver[3];
-            $datos->Plan=$ver[4];
-            $datos->Dispositivo=$ver[5];
-            $datos->Direccion=$ver[6];
-            $datos->Usuario=$ver[7];
-            $datos->Fecha=str_replace('-', '/', date('d-m-Y', strtotime($ver[8])));
+            $datos->Telefono=$ver[4];
+            $datos->Email=$ver[5];
+            $datos->Plan=$ver[6];
+            $datos->Dispositivo=$ver[7];
+            $datos->Direccion=$ver[8];
+            $datos->Usuario=$ver[9];
+            $datos->Fecha=str_replace('-', '/', date('d-m-Y', strtotime($ver[10])));
 
         }
 
