@@ -76,7 +76,7 @@
 
                         <div class="form-group">
                             <label>Fecha de pagos</label>
-                            <input type="date" class="form-control" name="fechaPagos" id="fechaPagos">
+                            <input type="number" class="form-control" name="fechaPagos" id="fechaPagos" placeholder="Día de pago" min="1" max="31">
                         </div>
 
                         <div class="form-group">
@@ -166,7 +166,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Plan:</label>
+                                <label>Plan de internet:</label>
                                 <select class="select2 form-control custom-select" id="rPlan" name="rPlan">
                                     <?php 
                                         include 'core/conexion.php';
@@ -204,6 +204,22 @@
                     <div class="form-group">
                         <label>Dirección:</label>
                         <textarea name="rDireccion" id="rDireccion" rows="2" class="form-control"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label>Fecha de instalación:</label>
+                                <input type="date" name="rFechaI" id="rFechaI" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Día de pago:</label>
+                                <input type="number" name="rDia" id="rDia" class="form-control" min="1" max="31">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">

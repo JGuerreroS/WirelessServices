@@ -94,12 +94,11 @@ $(document).ready(function() {
     // Ocultar botón guardar al abrir modal de editar
     $("#guardar").hide();
 
-
     // Mostrar botón guardar y activar inputs al presionar editar
     $("#editar").click(function (e) {
 
         $("#guardar").show();
-        $("#rNombre,#rApellidos,#rRut,#rMail,#rTelefono,#rPlan,#rDispositivo,#rDireccion").attr("disabled" , false);
+        $("#rNombre,#rApellidos,#rRut,#rMail,#rTelefono,#rPlan,#rDispositivo,#rFechaI,#rDia,#rDireccion").attr("disabled" , false);
         e.preventDefault();
         
     });
@@ -368,6 +367,8 @@ function verMas(id) {
         $("#rMail").val(r.Email).attr("disabled" , true);
         $("#rPlan").val(r.Plan).attr("disabled" , true);
         $("#rDispositivo").val(r.Dispositivo).attr("disabled" , true);
+        $("#rFechaI").val(r.FechaI).attr("disabled" , true);
+        $("#rDia").val(r.FechaP).attr("disabled" , true);
         $("#rDireccion").val(r.Direccion).attr("disabled" , true);
         $("#rUsuario").html('<b>Registrado por: </b><br>' + r.Usuario);
         $("#rFecha").html('<b>Fecha de registro: </b><br>' + r.Fecha);
@@ -492,3 +493,99 @@ function borrarUsuario(id) {
 
 }
 /*--------------------------------Usuarios---------------------------------------------*/
+
+/*--------------------------------Otros---------------------------------------------*/
+// Editar Dispositivos
+function editarDispositivo(id){
+    $("#guardarDispositivoEditado").click(function (e) {
+        e.preventDefault();
+
+        modelo = $("#dispositivoEditar").val();
+
+        $.getJSON("controllers/editarDispositivosOtros.php", { modelo : modelo , id_modelo : id }, function (r) {
+            if(r == 1){
+                alertify.success('Dispositivo actualizado correctamente');
+                $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+                $("#otrosEditarDispositivo").modal('hide');
+                $("#dispositivoEditar").val('');
+            }else{
+                alertify.error('Error al tratar de modificar');
+            }
+        });
+        
+    });
+    
+}
+
+// Borrar dispositivos
+function borrarDispositivo(id) {
+
+    alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function() {
+
+        $.get("controllers/borrarDispositivo.php", { id_modelo: id }, function(r) {
+
+            if (r == 1) {
+
+                $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+                alertify.success("Dispositivo eliminado con éxito");
+                
+
+            }else{
+
+                alertify.error("No se pudo eliminar el dispositivo");
+
+            }
+
+        });
+
+    }, function() {});
+
+}
+
+// Editar planes
+function editarPlanes(id){
+    $("#guardarPlanEditado").click(function (e) {
+        e.preventDefault();
+
+        plan = $("#planEditar").val();
+
+        $.getJSON("controllers/editarPlanesOtros.php", { plan : plan , id_plan : id }, function (r) {
+            if(r == 1){
+                alertify.success('Plan actualizado correctamente');
+                $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+                $("#otrosEditarPlanes").modal('hide');
+                $("#planEditar").val('');
+            }else{
+                alertify.error('Error al tratar de modificar');
+            }
+        });
+        
+    });
+    
+}
+
+// Borrar planes
+function borrarPlanes(id) {
+
+    alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function() {
+
+        $.get("controllers/borrarPlanes.php", { id_plan: id }, function(r) {
+
+            if (r == 1) {
+
+                $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+                alertify.success("Plan eliminado con éxito");
+                
+
+            }else{
+
+                alertify.error("No se pudo eliminar el plan");
+
+            }
+
+        });
+
+    }, function() {});
+
+}
+/*--------------------------------Otros---------------------------------------------*/

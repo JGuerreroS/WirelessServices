@@ -4,7 +4,7 @@
 
         include '../core/conexion.php';
 
-        $sql = "INSERT INTO clientes (nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, direccion, fecha_instalacion, fecha_pago, id_usuario, fecha_registro) VALUES ('$datos[nombre]', '$datos[apellido]', '$datos[rut]', '$datos[telefono]', '$datos[email]', $datos[plan], $datos[dispositivo], '$datos[direccion]', '$datos[fechaI]', '$datos[fechaP]', $datos[usuario], '$fecha')";
+        $sql = "INSERT INTO clientes (nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, direccion, fecha_instalacion, fecha_pago, id_usuario, fecha_registro) VALUES ('$datos[nombre]', '$datos[apellido]', '$datos[rut]', '$datos[telefono]', '$datos[email]', $datos[plan], $datos[dispositivo], '$datos[direccion]', '$datos[fechaI]', $datos[fechaP], $datos[usuario], '$fecha')";
 
         if(mysqli_query($conn, $sql)){
 
@@ -22,7 +22,43 @@
 
         include '../core/conexion.php';
 
-        $sql = "UPDATE clientes SET nombre='$datos[nombre]', apellidos='$datos[apellidos]', rut='$datos[rut]', telefono='$datos[telefono]', email='$datos[email]', id_plan=$datos[plan], id_dispositivo=$datos[dispositivo], direccion='$datos[direccion]' where id=$datos[id_cliente]";
+        $sql = "UPDATE clientes SET nombre='$datos[nombre]', apellidos='$datos[apellidos]', rut='$datos[rut]', telefono='$datos[telefono]', email='$datos[email]', id_plan=$datos[plan], id_dispositivo=$datos[dispositivo], fecha_instalacion='$datos[fechaI]', fecha_pago=$datos[fechaP], direccion='$datos[direccion]' where id=$datos[id_cliente]";
+
+        if (mysqli_query($conn, $sql)) {
+            
+            return 1;
+            
+        } else {
+            
+            return 2;
+            
+        }
+
+    }
+
+    function editarDispositivos($id_modelo,$modelo){
+
+        include '../core/conexion.php';
+
+        $sql = "UPDATE modelos SET modelo='$modelo' WHERE id_modelo=$id_modelo";
+
+        if (mysqli_query($conn, $sql)) {
+            
+            return 1;
+            
+        } else {
+            
+            return 2;
+            
+        }
+
+    }
+
+    function editarPlanes($id_plan,$plan){
+
+        include '../core/conexion.php';
+
+        $sql = "UPDATE planes SET plan='$plan' WHERE id_plan=$id_plan";
 
         if (mysqli_query($conn, $sql)) {
             
@@ -80,6 +116,42 @@
 
     }
 
+    function borrarDispositivo($id_modelo){
+
+        include '../core/conexion.php';
+
+        $sql = "DELETE FROM modelos WHERE id_modelo = $id_modelo";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
+
+        }
+
+    }
+
+    function borrarPlanes($id_plan){
+
+        include '../core/conexion.php';
+
+        $sql = "DELETE FROM planes WHERE id_plan = $id_plan";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
+
+        }
+
+    }
+
     function borrarUsuario($id_usuario){
 
         include '../core/conexion.php';
@@ -134,7 +206,7 @@
 
         include '../../../core/conexion.php';
 
-        $sql = "SELECT modelo FROM modelos";
+        $sql = "SELECT id_modelo, modelo FROM modelos";
 
         $result = mysqli_query($conn, $sql);
 
@@ -158,7 +230,7 @@
 
         include '../core/conexion.php';
 
-        $sql = "SELECT c.id, nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, direccion, Name, c.fecha_registro FROM clientes c
+        $sql = "SELECT c.id, nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, fecha_instalacion, fecha_pago, direccion, Name, c.fecha_registro FROM clientes c
         INNER JOIN users u ON (c.id_usuario = u.Id) WHERE c.id = $cliente";
 
         $result = mysqli_query($conn, $sql);
@@ -175,9 +247,11 @@
             $datos->Email=$ver[5];
             $datos->Plan=$ver[6];
             $datos->Dispositivo=$ver[7];
-            $datos->Direccion=$ver[8];
-            $datos->Usuario=$ver[9];
-            $datos->Fecha=str_replace('-', '/', date('d-m-Y', strtotime($ver[10])));
+            $datos->FechaI=$ver[8];
+            $datos->FechaP=$ver[9];
+            $datos->Direccion=$ver[10];
+            $datos->Usuario=$ver[11];
+            $datos->Fecha=str_replace('-', '/', date('d-m-Y', strtotime($ver[12])));
 
         }
 
