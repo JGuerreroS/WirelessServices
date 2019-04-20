@@ -11,11 +11,14 @@
             </div>
             <div class="modal-body">
                 <form id="frmPlan">
-
                     <div class="form-group">
                         <label for="formGroupExampleInput">Nombre del plan</label>
-                        <input type="text" class="form-control" id="plan" name="plan"
-                            placeholder="Nombre del plan">
+                        <input type="text" class="form-control" id="plan" name="plan" placeholder="Nombre del plan">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Costo del plan</label>
+                        <input type="number" class="form-control" id="costoPlan" name="costoPlan" placeholder="Costo del plan">
                     </div>
                 </form>
             </div>
@@ -95,15 +98,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Ingrese el nuevo nombre</label>
-                    <input type="text" class="form-control" id="planEditar" name="planEditar" placeholder="Nombre del plan">
-                </div>
 
+                <form id="frmEditarPlan">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Editar nombre</label>
+                                <input type="hidden" id="id_planH" name="id_planH">
+                                <input type="text" class="form-control" id="planEditarNombre" name="planEditarNombre" placeholder="Nombre del plan">
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Editar costo</label>
+                                <input type="number" class="form-control" id="planEditarCosto" name="planEditarCosto" placeholder="Precio">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="EditarPlan" class="btn btn-warning">Editar</button>
                 <button type="button" id="guardarPlanEditado" class="btn btn-primary">Guardar</button>
             </div>
         </div>

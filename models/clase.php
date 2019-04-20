@@ -54,20 +54,40 @@
 
     }
 
-    function editarPlanes($id_plan,$plan){
+    function verMasPlanes($id_plan){
 
         include '../core/conexion.php';
 
-        $sql = "UPDATE planes SET plan='$plan' WHERE id_plan=$id_plan";
+        $sql = "SELECT id_plan, plan, costo FROM planes WHERE id_plan=$id_plan";
 
-        if (mysqli_query($conn, $sql)) {
-            
+        $result = mysqli_query($conn, $sql);
+
+        $datos = new stdClass();
+
+        while ($ver = mysqli_fetch_array($result)) {
+            $datos->id_plan=$ver[0];
+            $datos->plan=$ver[1];
+            $datos->costo=$ver[2];
+        }
+
+        return json_encode($datos);
+
+    }
+
+    function editarPlanes($id_plan,$plan,$costo){
+
+        include '../core/conexion.php';
+
+        $sql = "UPDATE planes SET plan='$plan', costo=$costo WHERE id_plan=$id_plan";
+
+        if(mysqli_query($conn, $sql)){
+
             return 1;
-            
-        } else {
-            
+
+        }else {
+
             return 2;
-            
+
         }
 
     }
@@ -80,15 +100,13 @@
 
         if(mysqli_query($conn, $sql)){
 
-            echo 1;
+            return 1;
 
         }else {
 
-            echo 2;
+            return 2;
 
         }
-
-       
 
     }
 
@@ -99,9 +117,13 @@
         $sql = "UPDATE mascota SET microchip='$datos[microchip]', nombre='$datos[nombre]', id_especie=$datos[especie], id_raza=$datos[raza], sexo=$datos[sexo], fecha_nacimiento='$datos[nacimiento]', id_color=$datos[color], esterilizado=$datos[esterilizado], id_patron_color=$datos[patron] where id_mascota=$datos[id_mascota]";
 
         if (mysqli_query($conn, $sql)) {
+
             return 1;
+
         } else {
+
             return 2;
+
         }
     
     }
@@ -302,7 +324,7 @@
 
         include '../../../core/conexion.php';
 
-        $sql = "SELECT id_plan, plan FROM planes";
+        $sql = "SELECT id_plan, plan, costo FROM planes";
 
         $result = mysqli_query($conn, $sql);
 
@@ -346,11 +368,11 @@
 
     }
 
-    function cargarPlan($plan){
+    function cargarPlan($plan,$costo){
 
         include '../core/conexion.php';
 
-        $sql = "INSERT INTO planes (plan) VALUES ('$plan')";
+        $sql = "INSERT INTO planes (plan, costo) VALUES ('$plan', $costo)";
 
         if (mysqli_query($conn, $sql)) {
 

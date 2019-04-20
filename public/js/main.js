@@ -11,6 +11,39 @@ $(document).ready(function() {
 
     /*Inicio de la Sección Otros en ready*/
 
+    // Ocultar botón de guardar en editar planes
+    $("#guardarPlanEditado").hide();
+
+    $("#EditarPlan").click(function (e) {
+
+        $("#planEditarNombre,#planEditarCosto").attr('disabled' , false);
+        $("#guardarPlanEditado").show();
+        e.preventDefault();
+        
+    });
+
+    // Guardar cambios de planes editados
+    $("#guardarPlanEditado").click(function (e) {
+
+        $.ajax({
+            type: "post",
+            url: "controllers/editarPlanesOtros.php",
+            data: $("#frmEditarPlan").serialize(),
+            success: function (r) {
+                if(r == 1){
+                    alertify.success('Plan actualizado correctamente');
+                    $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+                    $("#otrosEditarPlanes").modal('hide');
+                }else{
+                    alertify.error('Error al tratar de modificar');
+                }
+            }
+        });
+
+        e.preventDefault();
+        
+    });
+
     // registrar planes de internet
     $("#guardarPlan").click(function (e) { 
         e.preventDefault();
@@ -529,7 +562,6 @@ function borrarDispositivo(id) {
                 $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
                 alertify.success("Dispositivo eliminado con éxito");
                 
-
             }else{
 
                 alertify.error("No se pudo eliminar el dispositivo");
@@ -543,25 +575,15 @@ function borrarDispositivo(id) {
 }
 
 // Editar planes
-function editarPlanes(id){
-    $("#guardarPlanEditado").click(function (e) {
-        e.preventDefault();
+function verMasPlanes(id){
+    $.getJSON("controllers/verMasPlanes.php", { id_plan : id }, function (r){
 
-        plan = $("#planEditar").val();
+        $("#id_planH").val(r.id_plan);
+        $("#planEditarNombre").val(r.plan).attr('disabled' , true);
+        $("#planEditarCosto").val(r.costo).attr('disabled' , true);
 
-        $.getJSON("controllers/editarPlanesOtros.php", { plan : plan , id_plan : id }, function (r) {
-            if(r == 1){
-                alertify.success('Plan actualizado correctamente');
-                $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
-                $("#otrosEditarPlanes").modal('hide');
-                $("#planEditar").val('');
-            }else{
-                alertify.error('Error al tratar de modificar');
-            }
-        });
-        
     });
-    
+
 }
 
 // Borrar planes

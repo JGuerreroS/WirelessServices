@@ -1,8 +1,11 @@
 <?php
 
-$id_plan = $_GET['id_plan'];
-$plan = mb_strtoupper($_GET['plan']);
+$id_plan = $_POST['id_planH'];
+
+$plan = mb_strtoupper($_POST['planEditarNombre']);
+
+$costo = $_POST['planEditarCosto'];
 
 include '../models/clase.php';
 
-echo editarPlanes($id_plan,$plan);
+echo editarPlanes($id_plan,$plan,$costo);
