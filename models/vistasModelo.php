@@ -9,8 +9,17 @@ class vistasModelo{
         if (in_array($vistas,$listaBlanca)) {
             if (is_file("./views/contenido/" . $vistas. "-view.php")) {
                 $contenido = "./views/contenido/" . $vistas. "-view.php";
+
+                    if($contenido == "./views/contenido/reporte-view.php"){
+
+                        $contenido = 'reporte';
+
+                    }
+
             } else {
+
                 $contenido = 'login';
+
             }
             
         } elseif($vistas == 'login'){
@@ -21,9 +30,9 @@ class vistasModelo{
 
             $contenido = 'login';
 
-        }elseif($vistas = 'reporte'){
+        }elseif($vistas = '404'){
 
-            $contenido = 'reporte';
+            $contenido = '404';
 
         }else{
 
