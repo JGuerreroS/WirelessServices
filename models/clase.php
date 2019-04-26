@@ -310,9 +310,11 @@
 
     function verAnimales(){
 
-        include 'core/conexion.php';
+        include '../../../core/conexion.php';
 
-        $sql = "SELECT e.nombre, r.nombre FROM razas r inner join especies e on (r.id_especie = e.id)";
+        $sql = "SELECT id_instalacion, rut, modelo FROM `instalaciones` i
+INNER JOIN clientes c ON (i.id_cliente = c.id)
+INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
 
         $result = mysqli_query($conn, $sql);
 

@@ -2,8 +2,8 @@ $(document).ready(function() {
 
     // cargar tabla de clientes
     $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
-    // cargar tabla de mascotas
-    $("#mascotasTabla").load('views/contenido/extra/registroMascotaTabla.php');
+    // cargar tabla de Instalaciones
+    $("#instalacionTabla").load('views/contenido/extra/instalacionTabla.php');
     // cargar tabla de usuarios
     $("#usuarioTabla").load('views/contenido/extra/registroUsuarioTabla.php');
     // cargar tabla otros
