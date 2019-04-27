@@ -21,15 +21,10 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="registroCliente"> <span class="icon-user"></span> Lista de clientes </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="instalaciones"> <span class="icon-location_city"></span> Instalaciones </a>
-
+                    <a class="dropdown-item" href="instalaciones"> <span class="icon-power3"></span> Instalaciones </a>
                 </div>
 
             </li>
-
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="registroMascota">Mascotas</a>
-            </li> -->
 
             <li class="nav-item dropdown">
 
@@ -40,8 +35,7 @@
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="registroUsuarios"> <span class="icon-user"></span> Usuarios </a>
-                    <!-- <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="especies"> <span class="icon-goat"></span> Especies </a> -->
+                
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="otros"> <span class="icon-th-small"></span> Otros </a>
                 </div>
@@ -62,7 +56,7 @@
 
         </ul>
 
-        <a class="btn btn-outline-success my-2 my-sm-0" href="./controllers/cerrarSesion.php">Cerrar sesión</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="./controllers/cerrarSesion.php" title="Cerrar sesión"> <i class="icon-power_settings_new"></i> </a>
 
     </div>
 </nav>

@@ -95,6 +95,63 @@
 
     }
 
+    function contarUsuarios(){
+
+        include 'core/conexion.php';
+
+        $sql = "SELECT COUNT(Id) FROM users";
+
+        $result = mysqli_query($conn, $sql);
+
+        while ($ver = mysqli_fetch_array($result)) {
+            $total = $ver[0];
+        }
+
+        mysqli_free_result($result);
+        mysqli_close($conn);
+
+        return $total;
+
+    }
+
+    function contarClientes(){
+
+        include 'core/conexion.php';
+
+        $sql = "SELECT COUNT(id) FROM clientes";
+
+        $result = mysqli_query($conn, $sql);
+
+        while ($ver = mysqli_fetch_array($result)) {
+            $clientes = $ver[0];
+        }
+
+        mysqli_free_result($result);
+        mysqli_close($conn);
+
+        return $clientes;
+
+    }
+
+    function contarDispositivos(){
+
+        include 'core/conexion.php';
+
+        $sql = "SELECT COUNT(id_dispositivo) FROM instalaciones";
+
+        $result = mysqli_query($conn, $sql);
+
+        while ($ver = mysqli_fetch_array($result)) {
+            $dispositivos = $ver[0];
+        }
+
+        mysqli_free_result($result);
+        mysqli_close($conn);
+
+        return $dispositivos;
+
+    }
+
     function verMasInstalaciones($id_instalacion){
 
         include '../core/conexion.php';

@@ -8,6 +8,8 @@ $(document).ready(function() {
     $("#usuarioTabla").load('views/contenido/extra/registroUsuarioTabla.php');
     // cargar tabla otros
     $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
+    // cargar grafica del inicio
+    $("#visitas").load('views/contenido/extra/grafica.php');
 
     /*Inicio de la Sección Instalaciones en ready*/
     $("#serial,#material,#lSerial,#lMaterial,#buscarOtro,#guardarInstalacionEditada").hide();

@@ -19,3 +19,5 @@
 <script src="<?php echo SERVERURL; ?>public/lib/alertify/alertify.js"></script>
 <!-- Mis Js -->
 <script src="<?php echo SERVERURL; ?>public/js/main.js"></script>
+<!--Plotly JS-->
+<script src="<?php echo SERVERURL; ?>public/lib/plotly/plotly-latest.min.js"></script>
