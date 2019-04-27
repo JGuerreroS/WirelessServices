@@ -9,6 +9,81 @@ $(document).ready(function() {
     // cargar tabla otros
     $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
 
+    /*Inicio de la Sección Instalaciones en ready*/
+    $("#serial,#material,#lSerial,#lMaterial,#buscarOtro").hide();
+    $("#registrarInstalacion").attr('disabled' , true);
+
+    // Buscar un cliente para la sección de instalaciones
+    $("#buscarCliente").click(function (e) {
+
+        var rutCliente = $("#rCliente").val();
+
+        $("#rCliente").attr('disabled' , true);
+
+        $("#buscarCliente").hide();
+        $("#buscarOtro").show();
+
+        $.getJSON("controllers/buscarDatosCliente.php", { rut : rutCliente }, function (r) {
+            $("#iCliente").val(r.idCliente);
+            $("#Inombres").html("Cliente: " + r.Nombre);
+            $("#Iplan").html("Plan: " + r.Plan);
+            $("#iDispositivo").val(r.id_dispositivo);
+            $("#Idispositivo").html("Dispositivo: " + r.Dispositivo);
+            $("#serial,#material,#lSerial,#lMaterial").show();
+            $("#registrarInstalacion").attr('disabled' , false);
+        });
+
+        e.preventDefault();
+        
+    });
+
+    // Buscar otro cliente en la sección de instalaciones
+    $("#buscarOtro").click(function (e) {
+
+        $("#buscarOtro").hide();
+        $("#buscarCliente").show();
+        $("#rCliente").val('');
+        $("#serial,#material,#lSerial,#lMaterial").hide();
+        $("#Inombres,#Iplan,#Idispositivo").html('');
+        $("#iDispositivo,#iCliente").val('');
+        $("#rCliente").attr('disabled' , false);
+        e.preventDefault();
+        
+    });
+
+    $("#registrarInstalacion").click(function (e) {
+
+        $.ajax({
+            type: "post",
+            url: "controllers/registrarInstalacion.php",
+            data: $("#frmRegistroInstalacion").serialize(),
+            success: function (r) {
+
+                if (r == 1) {
+
+                    alertify.success('Instalación registrada correctamente');
+                    $("#instalacionTabla").load('views/contenido/extra/instalacionTabla.php');
+                    $("#modalInstalacion").modal('hide');
+                    $("#frmRegistroInstalacion")[0].reset();
+                    $("#serial,#material,#lSerial,#lMaterial").hide();
+                    $("#Inombres,#Iplan,#Idispositivo").html('');
+                    $("#iDispositivo,#iCliente").val('');
+
+                } else {
+
+                    alertify.error('No se pudo registrar');
+                    
+                }
+            }
+        });
+        
+        e.preventDefault();
+        
+    });
+
+
+    /*Fin de la Sección Instalaciones en ready*/
+
     /*Inicio de la Sección Otros en ready*/
 
     // Ocultar botón de guardar en editar planes

@@ -7,7 +7,7 @@
 <!-- Agregar aqui el contenido -->
 
 <!-- Button del modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEspecie">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInstalacion">
     Nueva instalación
 </button>
 
@@ -15,12 +15,7 @@
 
 <div id="instalacionTabla"></div>
 
-<?php
-    // include 'extra/instalacionTabla.php'; //Cargar Tabla
-    include 'extra/registroEspecieModal.php'; //Cargar Modal
-?>
+<?php include 'extra/instalacionModal.php'; //Cargar Modal ?>
 
 <!-- Hasta aqui el contenido -->
-</div>
-
-    
+</div> 

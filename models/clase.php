@@ -1,5 +1,23 @@
 <?php
 
+    function registroInstalacion($datos){
+
+        include '../core/conexion.php';
+
+        $sql = "INSERT INTO instalaciones (id_cliente, id_dispositivo, serial, materiales) VALUES ($datos[cliente], $datos[dispositivo], '$datos[serial]', '$datos[material]')";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
+
+        }
+
+    }
+
     function cargarClientes($datos){
 
         include '../core/conexion.php';
@@ -110,24 +128,6 @@
 
     }
 
-    function editarMascotas($datos){
-
-        include '../core/conexion.php';
-
-        $sql = "UPDATE mascota SET microchip='$datos[microchip]', nombre='$datos[nombre]', id_especie=$datos[especie], id_raza=$datos[raza], sexo=$datos[sexo], fecha_nacimiento='$datos[nacimiento]', id_color=$datos[color], esterilizado=$datos[esterilizado], id_patron_color=$datos[patron] where id_mascota=$datos[id_mascota]";
-
-        if (mysqli_query($conn, $sql)) {
-
-            return 1;
-
-        } else {
-
-            return 2;
-
-        }
-    
-    }
-
     function borrarClientes($id_cliente){
 
         include '../core/conexion.php';
@@ -192,38 +192,6 @@
     
     }
     
-    function borrarMascotas($id_mascota){
-
-        include '../core/conexion.php';
-
-        // Consulta para obtener el nombre del archivo pdf
-        $borrar = mysqli_query($conn,"SELECT certificado, calidad FROM mascota WHERE id_mascota = $id_mascota");
-
-        // Almacenar arreglo
-        $row = mysqli_fetch_assoc($borrar);
-
-        // Concatenar ruta junto con el nombre del archivo
-        $certificado = "../uploads/certificados/".$row['certificado'];
-        $calidad = "../uploads/calidad/".$row['calidad'];
-
-        // Consulta de eliminar registro
-        $sql = "DELETE FROM mascota WHERE id_mascota = $id_mascota";
-
-        // Ejecutar consulta
-        $result = mysqli_query($conn, $sql);
-
-        if ($result) {
-
-            // Eliminar archivos
-            unlink($certificado);
-            unlink($calidad);
-
-            return 1;
-
-        }
-        
-    }
-
     function verDispositivos(){
 
         include '../../../core/conexion.php';
@@ -284,41 +252,15 @@
 
     }
 
-    function registroEspecie($especie){
-
-        include '../core/conexion.php';
-
-        $sql = "insert into especies (nombre) values ('$especie')";
-
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
-
-    }
-
-    function registroRaza($datos){
-
-        include '../core/conexion.php';
-
-        $sql = "insert into razas (id_especie, nombre) values ($datos[especie], '$datos[raza]')";
-
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
-
-    }
-
-    function verAnimales(){
+    function verInstalaciones(){
 
         include '../../../core/conexion.php';
 
-        $sql = "SELECT id_instalacion, rut, modelo FROM `instalaciones` i
-INNER JOIN clientes c ON (i.id_cliente = c.id)
-INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
+        $sql = "SELECT id_instalacion, rut, modelo, serial FROM instalaciones i
+        INNER JOIN clientes c ON (i.id_cliente = c.id)
+        INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
 
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
+        return mysqli_query($conn, $sql);
 
     }
 
@@ -328,45 +270,34 @@ INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
 
         $sql = "SELECT id_plan, plan, costo FROM planes";
 
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
+        return mysqli_query($conn, $sql);
 
     }
 
-    function verObtencion(){
+    function buscarDatosCliente($rut){
 
-        include 'core/conexion.php';
+        include '../core/conexion.php';
 
-        $sql = "SELECT id_obtencion, obtencion FROM obtencion";
-
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
-
-    }
-
-    function verColores(){
-
-        include 'core/conexion.php';
-
-        $sql = "SELECT id_color, color FROM colores";
+        $sql = "SELECT id, concat(nombre, ' ' , apellidos), plan, m.id_modelo, modelo FROM clientes c
+        INNER JOIN planes p ON (c.id_plan = p.id_plan)
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)
+        WHERE rut = $rut";
 
         $result = mysqli_query($conn, $sql);
 
-        return $result;
+        $datos = new stdClass;
 
-    }
+        while ($ver = mysqli_fetch_array($result)) {
 
-    function verPatron(){
+            $datos->idCliente=$ver[0];
+            $datos->Nombre="<b>".$ver[1]."</b>";
+            $datos->Plan="<b>".$ver[2]."</b>";
+            $datos->id_dispositivo=$ver[3];
+            $datos->Dispositivo="<b>".$ver[4]."</b>";
 
-        include 'core/conexion.php';
+        }
 
-        $sql = "SELECT id_patron, patron FROM patron_color";
-
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
+        return json_encode($datos);
 
     }
 
@@ -390,25 +321,6 @@ INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
         
     }
 
-    function cargarMarca($marca){
-
-        include '../core/conexion.php';
-
-        $sql = "INSERT INTO marcas (marca) values ('$marca')";
-
-        if(mysqli_query($conn, $sql)){
-
-            mysqli_close($conn);
-            return 1;
-
-        }else{
-
-            return 2;
-
-        }
-
-    }
-
     function cargarModelos($modelo){
 
         include '../core/conexion.php';
@@ -426,97 +338,6 @@ INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
 
         }
 
-    }
-
-    function cargarPatron($patron){
-
-        include '../core/conexion.php';
-
-        $sql = "INSERT INTO patron_color (patron) values ('$patron')";
-
-        $result = mysqli_query($conn, $sql);
-
-        mysqli_close($conn);
-
-        return $msg = "<script>
-                            alert('Patron registrado correctamente');
-                            window.location='../otros';
-                        </script>";
-
-    }
-
-    function registrarMascota($datos){
-
-        include '../core/conexion.php';
-
-        // Verificar que la mascota no se encuentre ya registrada
-        $verificar = "select * from mascota where microchip='$datos[micro]'";
-        $resVerificar = mysqli_query($conn,$verificar);
-        $totalVerificar = mysqli_num_rows($resVerificar);
-        
-        if($totalVerificar == 0){ // Si no esta registrada
-
-            // Se registra
-            $sql = "insert into mascota (microchip, nombre, id_especie, id_raza, sexo, fecha_nacimiento, id_color, id_patron_color, esterilizado, id_propietario, id_obtencion, id_razon, certificado, calidad, id_usuario, fecha_registro) values ('$datos[micro]','$datos[nombre]', $datos[especie], $datos[raza], $datos[sexo], '$datos[nacimiento]', $datos[color], $datos[patron], $datos[opcion], $datos[dueno], $datos[modo], $datos[razon], '$datos[certificado]', '$datos[calidad]', $datos[usuario], '$fecha')";
-
-            $result = mysqli_query($conn,$sql);
-
-            mysqli_close($conn);
-
-            return 1;
-        
-        }else{ // Si esta registrada, no se vuelve a registrar
-
-            return 2;
-        
-        }
-
-    }
-
-    function verMascotas(){
-
-        include '../../../core/conexion.php';
-
-        $sql = "SELECT id_mascota, microchip, m.nombre, e.nombre as especie, r.nombre as raza, sexo, fecha_nacimiento, color, CONCAT(cl.run, ' ' , cl.nombre, ' ', cl.apellidos) as propietario, m.fecha_registro FROM mascota m
-        INNER JOIN especies e ON (m.id_especie = e.id)
-        INNER JOIN razas r ON (m.id_raza = r.id)
-        INNER JOIN colores c ON (m.id_color = c.id_color)
-        INNER JOIN clientes cl ON (m.id_propietario = cl.id)";
-
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
-
-    }
-
-    function verMascotasReporte($fechas){
-
-        include 'core/conexion.php';
-
-        if ($fechas['desde'] == '' || $fechas['hasta'] == '') {
-
-            $sql = "SELECT id_mascota, microchip, m.nombre, e.nombre as especie, r.nombre as raza, sexo, fecha_nacimiento, color, CONCAT(cl.run, ' ' , cl.nombre) as propietario, m.fecha_registro FROM mascota m
-            INNER JOIN especies e ON (m.id_especie = e.id)
-            INNER JOIN razas r ON (m.id_raza = r.id)
-            INNER JOIN colores c ON (m.id_color = c.id_color)
-            INNER JOIN clientes cl ON (m.id_propietario = cl.id)";
-
-            return mysqli_query($conn, $sql);
-
-        } else {
-
-            $sql = "SELECT id_mascota, microchip, m.nombre, e.nombre as especie, r.nombre as raza, sexo, fecha_nacimiento, color, CONCAT(cl.run, ' ' , cl.nombre) as propietario, m.fecha_registro FROM mascota m
-            INNER JOIN especies e ON (m.id_especie = e.id)
-            INNER JOIN razas r ON (m.id_raza = r.id)
-            INNER JOIN colores c ON (m.id_color = c.id_color)
-            INNER JOIN clientes cl ON (m.id_propietario = cl.id) WHERE m.fecha_registro BETWEEN '$fechas[desde]' AND '$fechas[hasta]'";
-
-            return mysqli_query($conn, $sql);
-
-        }
-
-        
-    
     }
 
     function verUsuarios(){

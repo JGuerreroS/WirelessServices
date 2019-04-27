@@ -27,11 +27,11 @@
                     <td> <?php echo $ver[1];?> </td>
                     <td> <?php echo $ver[2];?> </td>
                     <td class="text-center">
-                        <span class="btn btn-success" title="Editar" onclick="verMasPlanes('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#otrosEditarPlanes">
+                        <span class="btn btn-success btn-sm" title="Editar" onclick="verMasPlanes('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#otrosEditarPlanes">
                             <i class="icon-zoom-in"></i>
                         </span>
 
-                        <span class="btn btn-danger" title="Borrar" onclick="borrarPlanes('<?php echo $ver[0]; ?>')">
+                        <span class="btn btn-danger btn-sm" title="Borrar" onclick="borrarPlanes('<?php echo $ver[0]; ?>')">
                             <i class="icon-bin"></i>
                         </span>
                     </td>
@@ -70,10 +70,10 @@
                     <td class="text-center"> <?php echo $nro;?> </td>
                     <td> <?php echo $ver[1]; ?> </td>
                     <td class="text-center">
-                        <span class="btn btn-success" title="Editar" onclick="editarDispositivo('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#otrosEditarDispositivo">
+                        <span class="btn btn-success btn-sm" title="Editar" onclick="editarDispositivo('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#otrosEditarDispositivo">
                             <i class="icon-zoom-in"></i>
                         </span>
-                        <span class="btn btn-danger" title="Borrar" onclick="borrarDispositivo('<?php echo $ver[0]; ?>')">
+                        <span class="btn btn-danger btn-sm" title="Borrar" onclick="borrarDispositivo('<?php echo $ver[0]; ?>')">
                             <i class="icon-bin"></i>
                         </span>
                     </td>
