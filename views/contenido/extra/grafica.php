@@ -1,22 +1,6 @@
-<?php
-include '../../../core/conexion.php';
-$sql = "SELECT fecha_instalacion, COUNT(id) FROM clientes GROUP BY fecha_instalacion ORDER BY fecha_instalacion";
-$res = mysqli_query($conn,$sql);
-
-$valX = array(); // Fecha
-$valY = array(); // ID
-
-while($row = mysqli_fetch_array($res)){
-  $valX[] = $row[0]; //Fecha
-  $valY[] = $row[1]; // Id
-}
-
-mysqli_free_result($res);
-mysqli_close($conn);
-
-$datosX = json_encode($valX);
-$datosY = json_encode($valY);
-
+<?php 
+    include '../../../models/clase.php';
+    list($datosX, $datosY) = grafica();
 ?>
 
 <div id="graficaLinea"></div>
@@ -43,13 +27,13 @@ $datosY = json_encode($valY);
     }
   ];
 
-  /*var layout = {
-  title:'Solicitudes de experticia realizados',
+  var layout = {
+  title:'Clientes registrados',
   height: 550,
   font: {
-    family: 'Lato',
+    family: 'Magneto',
     size: 16,
-    color: 'red' //color de titulo central, y las fechas y cantidades en los ejes X Y
+    color: 'black' //color de titulo central, y las fechas y cantidades en los ejes X Y
   },
   plot_bgcolor: '',
   margin: {
@@ -64,15 +48,15 @@ $datosY = json_encode($valY);
     rangemode: 'tozero'
   },
   yaxis: {
-    title: 'Total de solicitudes',
+    title: 'Total de clientes',
     titlefont: {
       color: 'black',
       size: 12
     },
     rangemode: 'tozero'
   }
-};*/
+};
 
-  Plotly.newPlot('graficaLinea', data/*, layout*/);
+  Plotly.newPlot('graficaLinea', data, layout);
 
 </script>

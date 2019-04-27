@@ -152,6 +152,32 @@
 
     }
 
+    function grafica(){
+
+        include '../../../core/conexion.php';
+
+        $sql = "SELECT fecha_instalacion, COUNT(id) FROM clientes GROUP BY fecha_instalacion ORDER BY fecha_instalacion";
+
+        $res = mysqli_query($conn,$sql);
+
+        $valX = array(); // Fecha
+        $valY = array(); // ID
+
+        while($row = mysqli_fetch_array($res)){
+            $valX[] = $row[0]; //Fecha
+            $valY[] = $row[1]; // Id
+        }
+
+        mysqli_free_result($res);
+        mysqli_close($conn);
+
+        $datosX = json_encode($valX);
+        $datosY = json_encode($valY);
+
+        return array($datosX, $datosY);
+
+    }
+
     function verMasInstalaciones($id_instalacion){
 
         include '../core/conexion.php';

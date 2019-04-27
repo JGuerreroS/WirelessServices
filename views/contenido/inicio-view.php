@@ -7,9 +7,10 @@
     <!-- Agregar aqui el contenido -->
     
     <div class="row">
-		<!-- Column -->
+        <!-- Column -->
+        <!--
 		<div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="1-inicio.php" class="card card-hover enlace">
+			<a href="inicio" class="card card-hover enlace">
 				<div class="box text-center">
 					<h1 class="font-light"><i class="icon-dashboard"></i></h1>
 					<h6>Inicio</h6>
@@ -33,34 +34,34 @@
 					<h6>Solicitudes</h6>
 				</div>
 			</a>
-		</div>
+		</div>-->
 		<!-- Column -->
-		<div class="col-md-6 col-lg-2 col-xlg-3">
+		<!-- <div class="col-md-6 col-lg-2 col-xlg-3">
 			<a href="3-2-experticias.php" class="card card-hover enlace">
 				<div class="box text-center">
 					<h1 class="font-light"><i class="icon-search4"></i></h1>
 					<h6>Experticias</h6>
 				</div>
 			</a>
-		</div>
+		</div> -->
 		<!-- Column -->
-		<div class="col-md-6 col-lg-2 col-xlg-3">
+		<!-- <div class="col-md-6 col-lg-2 col-xlg-3">
 			<a href="4-1-usuarios.php" class="card card-hover enlace">
 				<div class="box text-center">
 					<h1 class="font-light"><i class="icon-user"></i></h1>
 					<h6>Usuarios</h6>
 				</div>
 			</a>
-		</div>
+		</div> -->
 		<!-- Column -->
-		<div class="col-md-6 col-lg-2 col-xlg-3">
+		<!-- <div class="col-md-6 col-lg-2 col-xlg-3">
 			<a href="4-3-funcionarios.php" class="card card-hover enlace">
 				<div class="box text-center">
 					<h1 class="font-light"><i class="icon-users"></i></h1>
 					<h6>Expertos</h6>
 				</div>
 			</a>
-		</div>
+		</div> -->
 		<!-- Column -->
 	</div> <!-- Fin div.row -->
 
@@ -78,7 +79,7 @@
 					<div class="row">
 						<!-- column -->
 						<div class="col-lg-9">
-							<div id="visitas"></div>
+							<div id="grafica"></div>
 						</div>
 						<div class="col-lg-3">
 							<div class="row">
@@ -116,6 +117,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+    
     <!-- Hasta aqui el contenido -->
     </div>    
