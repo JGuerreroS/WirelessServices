@@ -25,7 +25,7 @@
             <td> <?php echo $ver[2];?> </td>
             <td class="text-center"> <?php echo $ver[3];?> </td>
             <td class="text-center">
-                <span class="btn btn-success btn-sm" onclick="verInstalacion('<?php echo $ver[0]; ?>')">
+                <span class="btn btn-success btn-sm" onclick="verInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalVerInstalacion" title="Ver más">
                     <i class="icon-zoom-in"></i>
                 </span>
             </td>

@@ -88,6 +88,40 @@
             $datos->costo=$ver[2];
         }
 
+        mysqli_free_result($result);
+        mysqli_close($conn);
+
+        return json_encode($datos);
+
+    }
+
+    function verMasInstalaciones($id_instalacion){
+
+        include '../core/conexion.php';
+
+        $sql = "SELECT id_instalacion, rut, CONCAT(nombre, ' ' , apellidos) AS nombres, direccion, modelo, serial, materiales FROM instalaciones i
+        INNER JOIN clientes c ON (i.id_cliente = c.id)
+        INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo) WHERE id_instalacion = $id_instalacion";
+
+        $result = mysqli_query($conn, $sql);
+
+        $datos = new stdClass();
+
+        while ($ver = mysqli_fetch_array($result)){
+
+            $datos->id_instalacion=$ver[0];
+            $datos->Rut="<b>".$ver[1]."</b>";
+            $datos->Nombres="<b>".$ver[2]."</b>";
+            $datos->Direccion="<b>".$ver[3]."</b>";
+            $datos->Dispositivo="<b>".$ver[4]."</b>";
+            $datos->Serial=$ver[5];
+            $datos->Material=$ver[6];
+           
+        }
+
+        mysqli_free_result($result);
+        mysqli_close($conn);
+
         return json_encode($datos);
 
     }
@@ -97,6 +131,24 @@
         include '../core/conexion.php';
 
         $sql = "UPDATE planes SET plan='$plan', costo=$costo WHERE id_plan=$id_plan";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else {
+
+            return 2;
+
+        }
+
+    }
+
+    function editarInstalacion($datos){
+
+        include '../core/conexion.php';
+
+        $sql = "UPDATE instalaciones SET serial='$datos[serial]', materiales='$datos[material]' WHERE id_instalacion=$datos[id_instalacion]";
 
         if(mysqli_query($conn, $sql)){
 

@@ -1,4 +1,4 @@
-<!-- Modal especie-->
+<!-- Modal registro de instalación -->
 <div class="modal fade" id="modalInstalacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -61,45 +61,55 @@
     </div>
 </div>
 
-<!-- Modal raza-->
-<div class="modal fade" id="modalRaza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal ver mas instalacion -->
+<div class="modal fade" id="modalVerInstalacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Registrar raza</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Ver detalles de la instalación</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form action="controllers/registroRaza.php" method="post">
+            <form id="frmEditarInstalacion">
             
+                            
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Especie</label>
-                    <select class="form-control form-control-sm" id="especie" name="especie">
-                        <option value=""> Seleccione especie </option>
-                        <?php
-                            include 'core/conexion.php';
-                            $sql = "select id, nombre from especies order by nombre";
-                            $result = mysqli_query($conn,$sql);
-                            while ($ver = mysqli_fetch_array($result)) {
-                        ?>
+                    <p id="vMrut"></p>
+                </div>
+                            
+                <div class="form-group">
+                    <p id="vMnombres"></p>
+                </div>
+                            
+                <div class="form-group">
+                    <p id="vMdireccion"></p>
+                </div>
+                            
+                <div class="form-group">
+                    <p id="vMdispositivo"></p>
+                </div>
 
-                        <option value="<?php echo $ver[0]; ?>"> <?php echo $ver[1]; ?> </option>
+                <input type="hidden" id="vMinstalacion" name="vMinstalacion">
 
-                    <?php } mysqli_free_result($result); mysqli_close($conn); ?>
-                    </select>
+                <div class="form-group">
+                    <label>Serial:</label>
+                    
+                    <input type="text" class="form-control" id="vMserial" name="vMserial">
                 </div>
 
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Raza</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre"  placeholder="Nombre de la raza">
+                    <label>Materiales:</label>
+                    <textarea class="form-control" name="vMmaterial" id="vMmaterial" cols="30" rows="5"></textarea>
                 </div>
 
+            </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button> </form>
+            <button type="button" class="btn btn-secondary" id="cerrarModalEditarInstalacion" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-warning" id="editarInstalacion">Editar</button>
+            <button type="button" class="btn btn-success" id="guardarInstalacionEditada">Guardar</button>
         </div>
         </div>
     </div>

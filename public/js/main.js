@@ -10,8 +10,54 @@ $(document).ready(function() {
     $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
 
     /*Inicio de la Sección Instalaciones en ready*/
-    $("#serial,#material,#lSerial,#lMaterial,#buscarOtro").hide();
+    $("#serial,#material,#lSerial,#lMaterial,#buscarOtro,#guardarInstalacionEditada").hide();
     $("#registrarInstalacion").attr('disabled' , true);
+
+    // Boton de cerrar modal de editar/ver mas
+    $("#cerrarModalEditarInstalacion").click(function (e) {
+
+        $("#guardarInstalacionEditada").hide();
+        $("#editarInstalacion").show();
+        e.preventDefault();
+        
+    });
+
+    // Boton de guardar edición de instalaciones
+    $("#guardarInstalacionEditada").click(function (e) {
+
+        $.ajax({
+            type: "post",
+            url: "controllers/editarInstalacion.php",
+            data: $("#frmEditarInstalacion").serialize(),
+            success: function (r) {
+                if(r == 1){
+
+                    $("#instalacionTabla").load('views/contenido/extra/instalacionTabla.php');
+                    alertify.success('Registro editado correctamente');
+                    $("#modalVerInstalacion").modal('hide');
+                    $("#guardarInstalacionEditada").hide();
+                    $("#editarInstalacion").show();
+
+                }else{
+
+                    alertify.error('Error al tratar de actualizar');
+
+                }
+            }
+        });
+        e.preventDefault();
+        
+    });
+
+    // Boton de editar instalación
+    $("#editarInstalacion").click(function (e) {
+
+        $(this).hide();
+        $("#guardarInstalacionEditada").show();
+        $("#vMserial,#vMmaterial").attr('disabled' , false);
+        e.preventDefault();
+        
+    });
 
     // Buscar un cliente para la sección de instalaciones
     $("#buscarCliente").click(function (e) {
@@ -509,26 +555,18 @@ function borrar(id) {
 
 /*--------------------------------Clientes---------------------------------------------*/
 
-/*--------------------------------Mascotas---------------------------------------------*/
+/*--------------------------------Instalación------------------------------------------*/
 
-function verMascota(id) {
-    $.getJSON("controllers/verMasMascotas.php", { mascota: id }, function(r) {
+function verInstalacion(id) {
+    $.getJSON("controllers/verMasInstalacion.php", { id_ins : id }, function(r) {
 
-        $("#id_mascota").val(r.idMascota);
-        $("#rMicrochip").val(r.Microchip).attr("disabled", true);
-        $("#rNombre").val(r.Nombre).attr("disabled", true);
-        $("#rEspecie").val(r.idEspecie).attr("disabled", true);
-        $("#rRaza").val(r.Raza).attr("disabled", true);
-        $("#rSexo").val(r.Sexo).attr("disabled", true);
-        $("#rEsterilizado").val(r.Esterilizado).attr("disabled", true);
-        $("#rNacimiento").val(r.Nacimiento).attr("disabled", true);
-        $("#rColor").val(r.Color).attr("disabled", true);
-        $("#rPatron").val(r.Patron).attr("disabled", true);
-        $("#rPropietario").val(r.Propietario).attr("disabled", true);
-        $("#rUsuario").html('Usuario: ' + r.Usuario);
-        $("#rFechaRegistro").html('Fecha de registro: ' + r.FechaRegistro);
-        $("#rCertificado").attr('href', r.Certificado);
-        $("#rCalidad").attr('href', r.Calidad);
+        $("#vMinstalacion").val(r.id_instalacion);
+        $("#vMrut").html("Rut: " + r.Rut);
+        $("#vMnombres").html("Cliente: " + r.Nombres);
+        $("#vMdireccion").html("Dirección: " + r.Direccion);
+        $("#vMdispositivo").html("Dispositivo: " + r.Dispositivo);
+        $("#vMserial").val(r.Serial).attr("disabled", true);
+        $("#vMmaterial").val(r.Material).attr("disabled", true);
 
     });
 }
@@ -556,7 +594,7 @@ function borrarMascota(id){
 
 }
 
-/*--------------------------------Mascotas---------------------------------------------*/
+/*--------------------------------Instalación---------------------------------------------*/
 
 
 /*--------------------------------Usuarios---------------------------------------------*/
