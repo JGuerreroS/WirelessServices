@@ -8,7 +8,7 @@
 
 <!-- Button del modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInstalacion">
-    Nueva instalación
+    <i class="icon-power-cord"></i> Nueva instalación
 </button>
 
 <hr>

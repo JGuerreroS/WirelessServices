@@ -8,12 +8,12 @@
 
 <!-- Button Registrar plan -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otrosPlanModal">
-    Registrar plan
+    <i class="icon-stack"></i> Registrar plan
 </button>
 
 <!-- Button Registrar modelo -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otrosModeloModal">
-    Registrar dispositivo
+    <i class="icon-radio"></i> Registrar dispositivo
 </button>
 
 <hr>

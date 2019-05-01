@@ -11,16 +11,7 @@
         </tr>
     </thead>
 
-    <tfoot>
-        <tr>
-            <th class="text-center">N°</th>
-            <th class="text-center">Nombre y Apellidos</th>
-            <th class="text-center">Rut</th>
-            <th class="text-center">Plan</th>
-            <th class="text-center">Dispositivo</th>
-            <th class="text-center">Opciones</th>
-        </tr>
-    </tfoot>
+
 
     <tbody>
 

@@ -104,7 +104,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="btn-guardarCliente" class="btn btn-primary">Guardar</button>
+                <button type="button" id="btn-guardarCliente" class="btn btn-primary" title="Guardar"> Guardar </button>
             </div>
         </div>
     </div>
@@ -158,7 +158,7 @@
                         <div class="col-8">
                             <div class="form-group">
                                 <label>Correo:</label>
-                                <input type="text" name="rMail" id="rMail" class="form-control">
+                                <input type="email" name="rMail" id="rMail" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -241,7 +241,7 @@
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-warning" id="editar">Editar</button>
-                <button type="button" class="btn btn-success" id="guardar">Guardar</button>
+                <button type="button" class="btn btn-success" id="guardar"> Guardar </button>
 
             </div>
         </div>

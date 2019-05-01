@@ -4,7 +4,7 @@
 
         include '../core/conexion.php';
 
-        $sql = "INSERT INTO instalaciones (id_cliente, id_dispositivo, serial, materiales) VALUES ($datos[cliente], $datos[dispositivo], '$datos[serial]', '$datos[material]')";
+        $sql = "INSERT INTO instalaciones (id_cliente, id_dispositivo, serial, materiales, fecha_registro, id_estatus) VALUES ($datos[cliente], $datos[dispositivo], '$datos[serial]', '$datos[material]', '$fecha', 1)";
 
         if(mysqli_query($conn, $sql)){
 
@@ -156,7 +156,7 @@
 
         include '../../../core/conexion.php';
 
-        $sql = "SELECT fecha_instalacion, COUNT(id) FROM clientes GROUP BY fecha_instalacion ORDER BY fecha_instalacion";
+        $sql = "SELECT fecha_registro, COUNT(id) FROM clientes GROUP BY fecha_registro ORDER BY fecha_registro";
 
         $res = mysqli_query($conn,$sql);
 
@@ -267,9 +267,39 @@
 
         include '../core/conexion.php';
 
-        $sql = "DELETE FROM clientes WHERE id = $id_cliente";
+        $verificar = mysqli_query($conn, "SELECT COUNT(id_cliente) FROM instalaciones WHERE id_cliente = $id_cliente AND id_estatus = 1");
 
-        return $result = mysqli_query($conn, $sql);
+        $total = mysqli_fetch_array($verificar);
+
+        if($total[0] > 0){
+
+            return 2;
+
+        }else{
+
+            $sql = "DELETE FROM clientes WHERE id = $id_cliente";
+
+            return mysqli_query($conn, $sql); 
+
+        }
+
+    }
+
+    function borrarInstalacion($id_instalacion,$causa){
+
+        include '../core/conexion.php';
+
+        $sql = "UPDATE instalaciones SET id_estatus = 2, id_causa = $causa, fecha_egreso = '$fecha' WHERE id_instalacion = $id_instalacion";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
+
+        }
 
     }
 
@@ -393,7 +423,7 @@
 
         $sql = "SELECT id_instalacion, rut, modelo, serial FROM instalaciones i
         INNER JOIN clientes c ON (i.id_cliente = c.id)
-        INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo)";
+        INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo) WHERE id_estatus = 1";
 
         return mysqli_query($conn, $sql);
 

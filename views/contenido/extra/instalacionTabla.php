@@ -28,6 +28,10 @@
                 <span class="btn btn-success btn-sm" onclick="verInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalVerInstalacion" title="Ver más">
                     <i class="icon-zoom-in"></i>
                 </span>
+
+                <span class="btn btn-danger btn-sm" onclick="borrarInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalBorrarInstalacion" title="Eliminar registro">
+                    <i class="icon-bin"></i>
+                </span>
             </td>
         </tr>
 

@@ -114,3 +114,32 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de eliminar instalacion -->
+<div class="modal fade" id="modalBorrarInstalacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar registro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="frmEliminarInstalacion">
+                <input type="hidden" name="id_instalacionB" id="id_instalacionB">
+                <label>Especifica la causa de la eliminación</label>
+                <select name="causa" id="causa" class="form-control">
+                    <option value="">Seleccione</option>
+                    <option value="1">Suspención por falta de pago</option>
+                    <option value="2">Suspención por cambio de proveedor</option>
+                </select>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="cerrarModalEditarInstalacion" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger" id="eliminarInstalacion"> <i class="icon-bin"></i> </button>
+        </div>
+        </div>
+    </div>
+</div>

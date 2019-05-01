@@ -24,6 +24,38 @@ $(document).ready(function() {
         
     });
 
+    // Boton eliminar instalacion
+    $("#eliminarInstalacion").click(function (e) {
+
+        alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function(){ 
+    
+            $.ajax({
+                type: "post",
+                url: "controllers/borrarInstalacion.php",
+                data: $("#frmEliminarInstalacion").serialize(),
+                success: function (r) {
+
+                    if(r == 1){
+    
+                        $("#clienteTabla").load('views/contenido/extra/instalacionTabla.php');
+                        alertify.success("Instalación eliminada con éxito");
+                        $("#modalBorrarInstalacion").modal('hide');
+        
+                    }else{
+        
+                        alertify.error("No se pudo eliminar el registro");
+        
+                    }
+
+                }
+            });
+    
+        }, function(){});
+        
+        e.preventDefault();
+        
+    });
+
     // Boton de guardar edición de instalaciones
     $("#guardarInstalacionEditada").click(function (e) {
 
@@ -533,7 +565,7 @@ function verMas(id) {
 
 }
 
-// Borrar registro
+// Borrar cliente
 function borrar(id) {
 
     alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function(){ 
@@ -545,8 +577,14 @@ function borrar(id) {
                 $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
                 alertify.success("Registro eliminado con éxito");
 
+            }else if(r == 2){
+
+                alertify.warning('No puedes eliminar este cliente, debido a que tiene registrado dispositivos en la sección de INSTALACIÓNES');
+                
             }else{
+
                 alertify.error("No se pudo eliminar el registro");
+
             }
 
         });
@@ -573,26 +611,10 @@ function verInstalacion(id) {
     });
 }
 
-function borrarMascota(id){
+// Borrar instalación
+function borrarInstalacion(id) {
 
-    alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function(){ 
-    
-    $.get("controllers/registroMascotaBorrar.php", {id_mascota : id}, function (r) {
-
-        if(r == 1){
-
-            $("#mascotasTabla").load('views/contenido/extra/registroMascotaTabla.php');
-            alertify.success("Mascota eliminada con éxito");
-
-        }else{
-
-            alertify.error("No se pudo eliminar el registro");
-            
-        }
-
-    });
-
-}, function(){});
+    $("#id_instalacionB").val(id);
 
 }
 
