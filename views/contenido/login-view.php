@@ -69,7 +69,7 @@
 					</div>
 					
 					<div class="form-group">
-						<input type="button" id="iniciar" value="Ingresar" class="btn float-right login_btn">
+						<input type="submit" id="iniciar" value="Ingresar" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
