@@ -446,7 +446,7 @@
         $sql = "SELECT id, concat(nombre, ' ' , apellidos), plan, m.id_modelo, modelo FROM clientes c
         INNER JOIN planes p ON (c.id_plan = p.id_plan)
         INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)
-        WHERE rut = $rut";
+        WHERE rut = '$rut'";
 
         $result = mysqli_query($conn, $sql);
 

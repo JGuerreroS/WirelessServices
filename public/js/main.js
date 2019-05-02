@@ -37,7 +37,7 @@ $(document).ready(function() {
 
                     if(r == 1){
     
-                        $("#clienteTabla").load('views/contenido/extra/instalacionTabla.php');
+                        $("#instalacionTabla").load('views/contenido/extra/instalacionTabla.php');
                         alertify.success("Instalación eliminada con éxito");
                         $("#modalBorrarInstalacion").modal('hide');
         
