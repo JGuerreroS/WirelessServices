@@ -42,6 +42,10 @@
 
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="convenios"> <i class="icon-group-outline"></i> Convenios </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link disabled text-info" href="#">
                     <i class="icon-user-tie"></i>

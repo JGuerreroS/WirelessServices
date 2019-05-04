@@ -1,61 +1,53 @@
-<!-- Modal registro de instalación -->
-<div class="modal fade" id="modalInstalacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal registro de convenios -->
+<div class="modal fade" id="convenioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Registrar nueva instalación del servicio</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo convenio</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form id="frmRegistroInstalacion">
-            
+            <form id="frmRegConvenio">
+
                 <div class="form-group">
-                    <label> RUT: </label>
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-3 my-1">
-
-                            <input type="text" class="form-control" name="rCliente" id="rCliente" placeholder="Rut...">
-                            <input type="hidden" name="iCliente" id="iCliente">
-                            <input type="hidden" name="iDispositivo" id="iDispositivo">
-
-                        </div>
-                        
-                        <div class="col-auto my-1">
-                            <button class="btn btn-primary" id="buscarCliente">Buscar cliente</button>
-                            <button class="btn btn-secondary" id="buscarOtro">Buscar otro cliente</button>
-                        </div>
-                    </div>
+                    <label class="font-weight-bold"> Nombre del cliente: </label>
+                    <input type="text" class="form-control" id="cNombre" name="cNombre" placeholder="Nombre y apellidos">
                 </div>
 
                 <div class="form-group">
-                    <p id="Inombres"></p>
+                    <label class="font-weight-bold"> Dirección planta internet: </label>
+                    <textarea class="form-control" name="cDireccion" id="cDireccion" rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <p id="Iplan"></p>
+                    <label class="font-weight-bold"> Equipos instalados: </label>
+                    <select class="custom-select" id="cDispositivo" name="cDispositivo">
+                        <option value=""> Seleccione dispositivo </option>
+                        <?php 
+                            include 'core/conexion.php';
+                            $sql = "SELECT id_modelo, modelo FROM modelos";
+                            $result = mysqli_query($conn,$sql);
+                            while ($ver = mysqli_fetch_array($result)) { 
+                        ?>
+
+                        <option value="<?php echo $ver[0]; ?>"> <?php echo $ver[1]; ?> </option>
+
+                        <?php } mysqli_free_result($result); mysqli_close($conn); ?>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <p id="Idispositivo"></p>
-                </div>
-
-                <div class="form-group">
-                    <label id="lSerial"> Serial del dispositivo: </label>
-                    <input type="text" class="form-control" id="serial" name="serial" placeholder="Igrese el N° del serial">
-                </div>
-
-                <div class="form-group">
-                    <label id="lMaterial"> Materiales usados: </label>
-                    <textarea class="form-control" name="material" id="material" cols="30" rows="4"></textarea>
+                    <label class="font-weight-bold"> Materiales: </label>
+                    <textarea class="form-control" name="cMateriales" id="cMateriales" rows="3"></textarea>
                 </div>
             </form>
 
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-success" id="registrarInstalacion">Guardar</button>
+            <button type="button" class="btn btn-success" id="regConvenio">Guardar</button>
         </div>
         </div>
     </div>
@@ -101,7 +93,7 @@
 
                 <div class="form-group">
                     <label>Materiales:</label>
-                    <textarea class="form-control" name="vMmaterial" id="vMmaterial" cols="30" rows="5"></textarea>
+                    <textarea class="form-control" name="vMmaterial" id="vMmaterial" rows="3"></textarea>
                 </div>
 
             </form>

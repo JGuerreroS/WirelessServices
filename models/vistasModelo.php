@@ -4,7 +4,7 @@ class vistasModelo{
 
     protected function obtener_vistas_modelo($vistas){
 
-        $listaBlanca = ["inicio", "registroCliente", "registroMascota", "registroUsuarios", "productos", "instalaciones", "otros"];
+        $listaBlanca = ["inicio", "registroCliente", "convenios", "registroUsuarios", "instalaciones", "otros"];
 
         if (in_array($vistas,$listaBlanca)) {
             if (is_file("./views/contenido/" . $vistas. "-view.php")) {

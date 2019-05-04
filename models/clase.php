@@ -18,6 +18,26 @@
 
     }
 
+    function cargarConvenio($datos){
+
+        include '../core/conexion.php';
+
+        session_start();
+
+        $sql = "INSERT INTO convenios (nombre_cliente, direccion, id_dispositivo, materiales, id_usuario, fecha_registro, id_estatus) VALUES ('$datos[nombre]', '$datos[direccion]', $datos[dispositivo], '$datos[materiales]', $_SESSION[usuario], '$fecha', 1)";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
+
+        }
+
+    }
+
     function cargarClientes($datos){
 
         include '../core/conexion.php';
@@ -414,6 +434,17 @@
         mysqli_close($conn);
 
         return json_encode($datos);
+
+    }
+
+    function verConvenios(){
+
+        include '../../../core/conexion.php';
+
+        $sql = "SELECT id_convenio, nombre_cliente, direccion, modelo FROM convenios c
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo) WHERE id_estatus = 1";
+
+        return mysqli_query($conn, $sql);
 
     }
 

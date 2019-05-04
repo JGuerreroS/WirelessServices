@@ -3,49 +3,34 @@
     <thead>
         <tr>
             <th class="text-center">N°</th>
-            <th class="text-center">Microchip</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Especie</th>
-            <th class="text-center">Raza</th>
+            <th class="text-center">Cliente</th>
+            <th class="text-center">Dirección</th>
+            <th class="text-center">Dispositivo</th>
             <th class="text-center">Opciones</th>
-           
         </tr>
     </thead>
-
-    <tfoot>
-        <tr>
-            <th class="text-center">N°</th>
-            <th class="text-center">Microchip</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Especie</th>
-            <th class="text-center">Raza</th>
-            <th class="text-center">Opciones</th>
-           
-        </tr>
-    </tfoot>
 
     <tbody>
 
     <?php
-    $nro=0;
-    include '../../../models/clase.php';
-    $datos = verMascotas();
-    while ($ver = mysqli_fetch_array($datos)) { 
-        $nro++;
+        $nro=0;
+        include '../../../models/clase.php';
+        $datos = verConvenios();
+        while ($ver = mysqli_fetch_array($datos)) { 
+            $nro++;
     ?>
         <tr>
-            <td> <?php echo $nro; ?> </td>
+            <td class="text-center"> <?php echo $nro;?> </td>
             <td class="text-center"> <?php echo $ver[1];?> </td>
             <td> <?php echo $ver[2];?> </td>
-            <td> <?php echo $ver[3];?> </td>
-            <td> <?php echo $ver[4];?> </td>
+            <td class="text-center"> <?php echo $ver[3];?> </td>
             <td class="text-center">
-                <span class="btn btn-success btn-sm" onClick="verMascota('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#verMascotas">
-                    <span class="icon-zoom-in" title="Ver más"></span>
+                <span class="btn btn-success btn-sm" onclick="verInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalVerInstalacion" title="Ver más">
+                    <i class="icon-zoom-in"></i>
                 </span>
 
-                <span class="btn btn-danger btn-sm" onClick="borrarMascota('<?php echo $ver[0]; ?>')">
-                    <span class="icon-bin"></span>
+                <span class="btn btn-danger btn-sm" onclick="borrarInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalBorrarInstalacion" title="Eliminar registro">
+                    <i class="icon-bin"></i>
                 </span>
             </td>
         </tr>

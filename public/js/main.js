@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    // cargar tabla de convenios
+    $("#convenioTabla").load('views/contenido/extra/convenioTabla.php');
     // cargar tabla de clientes
     $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
     // cargar tabla de Instalaciones
@@ -11,7 +13,36 @@ $(document).ready(function() {
     // cargar grafica del inicio
     $("#grafica").load('views/contenido/extra/grafica.php');
 
+    /*Inicio de la Sección Convenios en ready*/
+
+    $("#regConvenio").click(function (e) {
+
+        $.ajax({
+            type: "post",
+            url: "controllers/registroConvenio.php",
+            data: $("#frmRegConvenio").serialize(),
+            success: function (r) {
+                if(r == 1){
+                    $("#convenioTabla").load('views/contenido/extra/convenioTabla.php');
+                    $("#frmRegConvenio")[0].reset();
+                    $("#convenioModal").modal('hide');
+                    alertify.success('Convenio registrado');
+
+                }else{
+
+                    alertify.error('No se pudo registrar');
+
+                }
+            }
+        });
+        e.preventDefault();
+        
+    });
+    /*Fin de la Sección Convenios en ready*/
+
+
     /*Inicio de la Sección Instalaciones en ready*/
+
     $("#serial,#material,#lSerial,#lMaterial,#buscarOtro,#guardarInstalacionEditada").hide();
     $("#registrarInstalacion").attr('disabled' , true);
 
