@@ -25,11 +25,11 @@
             <td> <?php echo $ver[2];?> </td>
             <td class="text-center"> <?php echo $ver[3];?> </td>
             <td class="text-center">
-                <span class="btn btn-success btn-sm" onclick="verInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalVerInstalacion" title="Ver más">
+                <span class="btn btn-success btn-sm" onclick="verConvenio('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalZoomConvenio" title="Ver más">
                     <i class="icon-zoom-in"></i>
                 </span>
 
-                <span class="btn btn-danger btn-sm" onclick="borrarInstalacion('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalBorrarInstalacion" title="Eliminar registro">
+                <span class="btn btn-danger btn-sm" onclick="borrarConvenio('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#modalBConvenio" title="Eliminar registro">
                     <i class="icon-bin"></i>
                 </span>
             </td>

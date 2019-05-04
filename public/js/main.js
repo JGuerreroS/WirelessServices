@@ -15,6 +15,7 @@ $(document).ready(function() {
 
     /*Inicio de la Sección Convenios en ready*/
 
+    // Registrar convenios
     $("#regConvenio").click(function (e) {
 
         $.ajax({
@@ -35,6 +36,39 @@ $(document).ready(function() {
                 }
             }
         });
+        e.preventDefault();
+        
+    });
+
+    // Boton eliminar convenio
+    $("#eliminarConvenio").click(function (e) {
+
+        alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function(){ 
+    
+            $.ajax({
+                type: "post",
+                url: "controllers/borrarConvenio.php",
+                data: $("#frmEliminarConvenio").serialize(),
+                success: function (r) {
+
+                    if(r == 1){
+    
+                        $("#convenioTabla").load('views/contenido/extra/convenioTabla.php');
+                        alertify.success("Convenio cerrado con éxito");
+                        $("#frmEliminarConvenio")[0].reset();
+                        $("#modalBConvenio").modal('hide');
+        
+                    }else{
+        
+                        alertify.error("No se pudo eliminar el registro");
+        
+                    }
+
+                }
+            });
+    
+        }, function(){});
+        
         e.preventDefault();
         
     });
@@ -626,6 +660,19 @@ function borrar(id) {
 
 /*--------------------------------Clientes---------------------------------------------*/
 
+/*--------------------------------Convenios------------------------------------------*/
+function verConvenio(id) {
+    $.getJSON("controllers/zoomConvenio.php", { id_convenio : id }, function(r) {
+
+        $("#zNombres").html("Nombres: " + r.Nombres);
+        $("#zDireccion").html("Dirección: " + r.Direccion);
+        $("#zDispositivo").html("Dispositivos: " + r.Dispositivo);
+        $("#zMateriales").html("Materiales: " + r.Material);
+
+    });
+}
+/*--------------------------------Convenios------------------------------------------*/
+
 /*--------------------------------Instalación------------------------------------------*/
 
 function verInstalacion(id) {
@@ -779,3 +826,12 @@ function borrarPlanes(id) {
 
 }
 /*--------------------------------Otros---------------------------------------------*/
+
+/*--------------------------------Convenios---------------------------------------------*/
+// Borrar convenio
+function borrarConvenio(id) {
+
+    $("#id_convenioB").val(id);
+
+}
+/*--------------------------------Convenios---------------------------------------------*/

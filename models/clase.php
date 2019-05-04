@@ -198,6 +198,34 @@
 
     }
 
+    function zoomConvenio($id_convenio){
+
+        include '../core/conexion.php';
+
+        $sql = "SELECT id_convenio, nombre_cliente, direccion, modelo, materiales FROM convenios c
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo) WHERE id_convenio = $id_convenio";
+
+        $result = mysqli_query($conn, $sql);
+
+        $datos = new stdClass();
+
+        while ($ver = mysqli_fetch_array($result)){
+
+            $datos->id_convenio = $ver[0];
+            $datos->Nombres = "<b>" . $ver[1] . "</b>";
+            $datos->Direccion = "<b>" . $ver[2] . "</b>";
+            $datos->Dispositivo = "<b>" . $ver[3] . "</b>";
+            $datos->Material = "<b>" . $ver[4] . "</b>";
+           
+        }
+
+        mysqli_free_result($result);
+        mysqli_close($conn);
+
+        return json_encode($datos);
+
+    }
+
     function verMasInstalaciones($id_instalacion){
 
         include '../core/conexion.php';
@@ -300,6 +328,26 @@
             $sql = "DELETE FROM clientes WHERE id = $id_cliente";
 
             return mysqli_query($conn, $sql); 
+
+        }
+
+    }
+
+    function borrarConvecion($id_convenio,$causa){
+
+        include '../core/conexion.php';
+
+        session_start();
+
+        $sql = "UPDATE convenios SET id_estatus = 2, id_causa = $causa, fecha_egreso = '$fecha', egresado_por = $_SESSION[usuario] WHERE id_convenio = $id_convenio";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
 
         }
 
