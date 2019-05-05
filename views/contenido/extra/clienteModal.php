@@ -240,6 +240,7 @@
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-info" id="print" title="Imprimir perfil"> <i class="icon-print"></i> </button>
                 <button type="button" class="btn btn-warning" id="editar">Editar</button>
                 <button type="button" class="btn btn-success" id="guardar"> Guardar </button>
 

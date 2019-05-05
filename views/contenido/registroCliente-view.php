@@ -15,7 +15,7 @@
 
     <div id="clienteTabla"></div>
 
-    <?php include 'extra/registroClienteModal.php'; //Cargar Modales ?>
+    <?php include 'extra/clienteModal.php'; //Cargar Modales ?>
 
     <!-- Hasta aqui el contenido -->
 </div>
