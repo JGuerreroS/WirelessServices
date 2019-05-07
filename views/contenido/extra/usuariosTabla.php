@@ -21,7 +21,7 @@
                 <td> <?php echo $nro; ?> </td>
                 <td> <?php echo $ver[1]; ?> </td>
                 <td> <?php echo $ver[2]; ?> </td>
-                <td> <?php echo $ver[3]; ?> </td>
+                <td class="text-center"> <?php echo str_replace('-', '/', date('d-m-Y', strtotime($ver[3]))); ?> </td>
                 <td class="text-center">
                 <span class="btn btn-success btn-sm" onClick="verUsuario('<?php echo $ver[0]; ?>')" data-toggle="modal" data-target="#verUsuarios">
                     <span class="icon-zoom-in" title="Ver más"></span>

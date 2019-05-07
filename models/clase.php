@@ -353,6 +353,21 @@
 
     }
 
+    function perfilCliente($id_cliente){
+
+        include 'core/conexion.php';
+
+            $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion, c.fecha_registro, fecha_pago, telefono, email, id_estatus, costo FROM clientes c
+            INNER JOIN planes p ON (c.id_plan = p.id_plan)
+            INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)
+            INNER JOIN instalaciones i ON (c.id = i.id_cliente) WHERE id = $id_cliente";
+
+            $result = mysqli_query($conn, $sql);
+
+            return mysqli_fetch_array($result);
+
+    }
+
     function borrarInstalacion($id_instalacion,$causa){
 
         include '../core/conexion.php';
@@ -590,9 +605,7 @@
 
         $sql = "SELECT Id, Name, Usuario, fecha_registro FROM users";
 
-        $result = mysqli_query($conn, $sql);
-
-        return $result;
+        return mysqli_query($conn, $sql);
 
     }
 

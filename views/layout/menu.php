@@ -26,6 +26,14 @@
 
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="facturacion"> <i class="icon-monetization_on"></i> Facturación </a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="convenios"> <i class="icon-group-outline"></i> Convenios </a>
+            </li>
+
             <li class="nav-item dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -34,7 +42,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="registroUsuarios"> <i class="icon-users"></i> Usuarios </a>
+                    <a class="dropdown-item" href="usuarios"> <i class="icon-users"></i> Usuarios </a>
                 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="otros"> <span class="icon-spinner4"></span> Otros </a>
@@ -42,9 +50,7 @@
 
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="convenios"> <i class="icon-group-outline"></i> Convenios </a>
-            </li>
+            
 
             <li class="nav-item">
                 <a class="nav-link disabled text-info" href="#">

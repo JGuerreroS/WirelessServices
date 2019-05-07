@@ -1,76 +1,110 @@
 <?php
     require('public/lib/fpdf/fpdf.php');
 
-    error_reporting(0);
+    // error_reporting(0);
 
-    $fechaDesde = $_POST['desde'];
-    $fechaHasta = $_POST['hasta'];
-
-    $fechas = array('desde' => $fechaDesde, 'hasta' => $fechaHasta);
+    $id_cliente = $_POST['Icliente'];
 
     class PDF extends FPDF{
     // Cabecera de página
     function Header(){
         // Logo
-        $this->Image('public/img/2.png',10,8,33);
+        $this->Image('public/img/9.png',10,8,33);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Movernos a la derecha
-        $this->Cell(110);
+        $this->Cell(70);
         // Título
-        $this->Cell(30,10,utf8_decode('Reporte de mascotas'),0,0,'C');
+        $this->Cell(50,30,utf8_decode('Perfil del cliente'),0,0,'C');
         // Salto de línea
         $this->Ln(30);
         // Cabecera de la tabla
-        $this->SetFont('Arial','B',12);
-        $this->Cell(10,10,utf8_decode('N°'),1,0,'C',0);
-        $this->Cell(20,10,'Chip',1,0,'C',0);
-        $this->Cell(45,10,'Nombre',1,0,'C',0);
-        $this->Cell(22,10,'Especie',1,0,'C',0);
-        $this->Cell(30,10,'Raza',1,0,'C',0);
-        $this->Cell(15,10,'Sexo',1,0,'C',0);
-        $this->Cell(30,10,'Nacimiento',1,0,'C',0);
-        $this->Cell(80,10,'Propietario',1,1,'C',0);
+
     }
 
     // Pie de página
-    function Footer(){
-        // Posición: a 1,5 cm del final
-        $this->SetY(-15);
-        // Arial italic 8
-        $this->SetFont('Arial','I',8);
-        // Título footer
-        $this->Cell(30,10,utf8_decode('Municipalidad Graneros'),0,0,'C');
-        // Número de página
-        $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
-    }
+        function Footer(){
+            // Posición:a 1,5 cm del final
+            $this->SetY(-15);
+            // Arial italic 8
+            $this->SetFont('Arial','I',8);
+            // Título footer
+            $this->Cell(30,10,'Municipalidad Graneros',0,0,'C');
+            // Número de página
+            $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
+        }
     }
 
     // Creación del objeto de la clase heredada
-    $pdf = new PDF('L','mm','A4');
+    $pdf = new PDF(); //'L','mm','A4'
     $pdf->AliasNbPages();
     $pdf->AddPage();
     $pdf->SetFont('Times','',12);
 
     include 'models/clase.php';
-    $datos = verMascotasReporte($fechas);
-    $nro = 0;
-    while ($ver = mysqli_fetch_array($datos)) { $nro++;
 
-        $pdf->Cell(10,10,$nro,1,0,'C',0);
-        $pdf->Cell(20,10,$ver[1],1,0,'C',0);
-        $pdf->Cell(45,10,$ver[2],1,0,'C',0);
-        $pdf->Cell(22,10,$ver[3],1,0,'C',0);
-        $pdf->Cell(30,10,utf8_decode($ver[4]),1,0,'C',0);
-        if($ver[5]==1){
-            $pdf->Cell(15,10,'Macho',1,0,'C',0);
-        }else{
-            $pdf->Cell(15,10,'Hembra',1,0,'C',0);
-        }
-        $pdf->Cell(30,10,$ver[6],1,0,'C',0);
-        $pdf->Cell(80,10,utf8_decode($ver[8]),1,1,'C',0);
+    $datos = perfilCliente($id_cliente);
 
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,'RUT:',0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(50,10,$datos[2],0,1,'L',0);
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,'Nombres:',0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(80,10,utf8_decode($datos[1]),0,1,'L',0);
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,utf8_decode('Teléfono:'),0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(80,10,utf8_decode($datos[8]),0,1,'L',0);
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,'Correo:',0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(80,10,utf8_decode($datos[9]),0,1,'L',0);
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,utf8_decode('Dirección:'),0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->MultiCell(160,10,utf8_decode($datos[5]),0);
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,'Fecha de registro:',0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(40,10,str_replace('-', '/', date('d-m-Y', strtotime($datos[6]))),0,1,'L',0);
+    $pdf->SetFont('Arial','I',10);
+    $pdf->Cell(32,10,utf8_decode('Estatus:'),0,0,'L',0);
+    $pdf->SetFont('Arial','B',10);
+    if($datos[10] == 1){
+        $pdf->Cell(40,10,'ACTIVO',0,1,'L',0);
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,utf8_decode('Día de pago:'),0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,$datos[7],0,1,'L',0);
+
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,'Dispositivo:',0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,utf8_decode($datos[4]),0,1,'L',0);
+
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,'Plan:',0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,utf8_decode($datos[3]),0,1,'L',0);
+
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,'Costo del plan:',0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,utf8_decode($datos[11]." Pesos"),0,1,'L',0);
+    }else{
+        $pdf->Cell(40,10,'INACTIVO',0,1,'L',0);
     }
+
+    
+
+    
+    
+    
+    
+    
+    
     
     $pdf->Output();
 ?>

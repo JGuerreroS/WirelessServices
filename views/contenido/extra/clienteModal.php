@@ -232,15 +232,17 @@
                         </div>
                     </div>
 
-                    
-                    
                 </form>
 
             </div>
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-info" id="print" title="Imprimir perfil"> <i class="icon-print"></i> </button>
+                <form method="POST" action="reporte" target="_blank">
+                    <input type="hidden" name="Icliente" id="Icliente">
+                    <button type="submit" class="btn btn-info" onclick="print()" title="Ver más"> <i class="icon-print"></i> </button>
+                </form>
+                
                 <button type="button" class="btn btn-warning" id="editar">Editar</button>
                 <button type="button" class="btn btn-success" id="guardar"> Guardar </button>
 

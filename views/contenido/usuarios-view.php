@@ -1,42 +1,21 @@
     <div class="card-header">
-    Usuarios
+        Usuarios
     </div>
 
     <div class="card-body">
-    
-    <!-- Agregar aqui el contenido -->
-    <table class="table table-striped table-bordered" id="myTabla">
 
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>Nombre</th>
-                <th>Usuario</th>
-                <th>Clave</th>
-            </tr>
-        </thead>
+        <!-- Agregar aqui el contenido -->
 
-        <tbody>
-        <?php
-            require_once './controllers/usuariosControlador.php';
-            $usuarios = new UsuariosControlador();
-            $datos = $usuarios->obtenerUsuariosControlador();
-            while($ver = mysqli_fetch_array($datos)){
-        ?>
-            <tr>
-                <td> <?php echo $ver[0]; ?> </td>
-                <td> <?php echo $ver[1]; ?> </td>
-                <td> <?php echo $ver[2]; ?> </td>
-                <td> <?php echo $ver[3]; ?> </td>
-            </tr>
-        <?php
-        }
-        ?>
-        </tbody>
-        
-    </table>
+        <!-- Button del modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarUsuarioModal">
+            <span class="icon-user-plus"></span> Registrar Usuario
+        </button>
 
-    <!-- Hasta aqui el contenido -->
+        <hr>
+
+        <div id="usuarioTabla"></div>
+
+        <?php include 'extra/usuariosModal.php'; //Cargar Modal ?>
+
+        <!-- Hasta aqui el contenido -->
     </div>
-
-    

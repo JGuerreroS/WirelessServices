@@ -16,7 +16,7 @@ while ($ver = mysqli_fetch_array($result)){
     $datos->Nombre=$ver[0];
     $datos->Usuario=$ver[1];
     $datos->Nivel=$ver[2];
-    $datos->Fecha=$ver[3];
+    $datos->Fecha=str_replace('-', '/', date('d-m-Y', strtotime($ver[3])));
     $datos->IdUsuario=$ver[4];
 
 }

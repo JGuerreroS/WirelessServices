@@ -1,5 +1,5 @@
     <div class="card-header">
-        Usuarios
+        Registrar pago de facturas
     </div>
 
     <div class="card-body">
@@ -15,7 +15,7 @@
 
         <div id="usuarioTabla"></div>
 
-        <?php include 'extra/registroUsuarioModal.php'; //Cargar Modal ?>
+        <?php include 'extra/usuariosModal.php'; //Cargar Modal ?>
 
         <!-- Hasta aqui el contenido -->
     </div>

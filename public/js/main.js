@@ -7,7 +7,7 @@ $(document).ready(function() {
     // cargar tabla de Instalaciones
     $("#instalacionTabla").load('views/contenido/extra/instalacionTabla.php');
     // cargar tabla de usuarios
-    $("#usuarioTabla").load('views/contenido/extra/registroUsuarioTabla.php');
+    $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
     // cargar tabla otros
     $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
     // cargar grafica del inicio
@@ -196,6 +196,7 @@ $(document).ready(function() {
         
     });
 
+    // Registrar instalaciones
     $("#registrarInstalacion").click(function (e) {
 
         $.ajax({
@@ -308,7 +309,7 @@ $(document).ready(function() {
     });
     /*Fin de la Sección Otros en ready*/
 
-    /*Inicio de la Sección de Clientes en ready*/
+    /*-----------------------------------------------Inicio de la Sección de Clientes en ready------------------------------------*/
 
     // registrar clientes
     $('#btn-guardarCliente').click(function (e) {
@@ -378,7 +379,7 @@ $(document).ready(function() {
         
     });
 
-    /*Fin de la Sección de Clientes en ready*/
+    /*-------------------------------------------------Fin de la Sección de Clientes en ready----------------------------------------*/
 
 /*------------------------------------------------------------------------------------------------------------*/
     
@@ -510,7 +511,7 @@ $(document).ready(function() {
                 }else if(r == 2){
                     
                     $("#registrarUsuarioModal").modal('hide');
-                    $("#usuarioTabla").load('views/contenido/extra/registroUsuarioTabla.php');
+                    $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
                     $("#frmRegistarUsuario")[0].reset();
                     alertify.success("Usuario registrado con éxito");  
                 }else{
@@ -534,7 +535,7 @@ $(document).ready(function() {
 
                     $("#verUsuarios").modal('hide');
                     $("#guardarUsuarioEditado").hide();
-                    $("#usuarioTabla").load('views/contenido/extra/registroUsuarioTabla.php');
+                    $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
                     alertify.success("Usuario actualizado exitosamente");
 
                 } else {
@@ -721,7 +722,7 @@ function borrarUsuario(id) {
 
             if (r == 1) {
 
-                $("#usuarioTabla").load('views/contenido/extra/registroUsuarioTabla.php');
+                $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
                 alertify.success("Usuario eliminado con éxito");
                 
 
@@ -835,3 +836,8 @@ function borrarConvenio(id) {
 
 }
 /*--------------------------------Convenios---------------------------------------------*/
+
+function print(){
+    var id_cliente = $("#id_cliente").val();
+    $("#Icliente").val(id_cliente);
+}
