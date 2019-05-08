@@ -157,7 +157,7 @@
 
         include 'core/conexion.php';
 
-        $sql = "SELECT COUNT(id_dispositivo) FROM instalaciones";
+        $sql = "SELECT COUNT(id_dispositivo) FROM instalaciones WHERE id_estatus = 1";
 
         $result = mysqli_query($conn, $sql);
 
@@ -352,6 +352,8 @@
         }
 
     }
+
+
 
     function perfilCliente($id_cliente){
 
@@ -606,6 +608,38 @@
         $sql = "SELECT Id, Name, Usuario, fecha_registro FROM users";
 
         return mysqli_query($conn, $sql);
+
+    }
+
+    function verFacturas(){
+
+        include '../../../core/conexion.php';
+
+        $sql = "SELECT id_factura, CONCAT(rut, ' ', nombre, ' ', apellidos, ' ') AS cliente, plan, p.costo, f.fecha_pago, referencia FROM facturacion f
+        INNER JOIN clientes c ON (f.id_cliente = c.id)
+        INNER JOIN planes p ON (f.id_plan = p.id_plan) ORDER BY id_factura DESC";
+
+        return mysqli_query($conn, $sql);
+
+    }
+
+    function registroFactura($datos){
+
+        include '../core/conexion.php';
+ 
+        session_start();
+
+        $sql = "INSERT INTO facturacion (id_cliente, id_plan, costo, fecha_pago, referencia, fecha_registro, id_usuario) VALUES ($datos[cliente], $datos[plan], $datos[total], '$datos[fechaPago]', '$datos[referencia]', '$fecha', $_SESSION[usuario])";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else{
+
+            return 2;
+
+        }
 
     }
 

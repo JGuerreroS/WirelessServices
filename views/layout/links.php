@@ -12,5 +12,7 @@
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>public/lib/alertify/css/themes/bootstrap.css">
 <!-- Icomoon css -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>public/lib/icomoon/fonts/style.css">
+<!-- Select2 css -->
+<link rel="stylesheet" href="<?php echo SERVERURL; ?>public/lib/select2/select2.min.css">
 <!-- Mis css -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>public/css/estilos.css">

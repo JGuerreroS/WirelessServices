@@ -1,5 +1,5 @@
     <div class="card-header">
-        Usuarios
+        <b>Usuarios</b>
     </div>
 
     <div class="card-body">

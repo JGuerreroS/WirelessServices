@@ -17,7 +17,9 @@
 <script src="<?php echo SERVERURL; ?>public/lib/datatables/buttons.colVis.min.js"></script>
 <!-- Alertify Js -->
 <script src="<?php echo SERVERURL; ?>public/lib/alertify/alertify.js"></script>
-<!-- Mis Js -->
-<script src="<?php echo SERVERURL; ?>public/js/main.js"></script>
 <!--Plotly JS-->
 <script src="<?php echo SERVERURL; ?>public/lib/plotly/plotly-latest.min.js"></script>
+<!--select2 JS-->
+<script src="<?php echo SERVERURL; ?>public/lib/select2/select2.min.js"></script>
+<!-- Mis Js -->
+<script src="<?php echo SERVERURL; ?>public/js/main.js"></script>

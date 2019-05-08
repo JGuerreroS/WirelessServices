@@ -1,69 +1,11 @@
     <div class="card-header">
-        <h5>Bienvenid@ <?php echo $_SESSION['name']; include 'models/clase.php'; ?> </h5>
+        <b>Bienvenido <?php echo $_SESSION['name']; include 'models/clase.php'; ?> </b>
     </div>
 
     <div class="card-body">
     
     <!-- Agregar aqui el contenido -->
     
-    <div class="row">
-        <!-- Column -->
-        <!--
-		<div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="inicio" class="card card-hover enlace">
-				<div class="box text-center">
-					<h1 class="font-light"><i class="icon-dashboard"></i></h1>
-					<h6>Inicio</h6>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="3-estadisticas.php" class="card card-hover enlace">
-				<div class="box text-center">
-					<h1 class="font-light"><i class="icon-chart3"></i></h1>
-					<h6>Estadísticas</h6>
-				</div>
-			</a>
-		</div>
-		
-		<div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="3-1-solicitud.php" class="card card-hover enlace">
-				<div class="box text-center">
-					<h1 class="font-light"><i class="icon-document-edit2"></i></h1>
-					<h6>Solicitudes</h6>
-				</div>
-			</a>
-		</div>-->
-		<!-- Column -->
-		<!-- <div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="3-2-experticias.php" class="card card-hover enlace">
-				<div class="box text-center">
-					<h1 class="font-light"><i class="icon-search4"></i></h1>
-					<h6>Experticias</h6>
-				</div>
-			</a>
-		</div> -->
-		<!-- Column -->
-		<!-- <div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="4-1-usuarios.php" class="card card-hover enlace">
-				<div class="box text-center">
-					<h1 class="font-light"><i class="icon-user"></i></h1>
-					<h6>Usuarios</h6>
-				</div>
-			</a>
-		</div> -->
-		<!-- Column -->
-		<!-- <div class="col-md-6 col-lg-2 col-xlg-3">
-			<a href="4-3-funcionarios.php" class="card card-hover enlace">
-				<div class="box text-center">
-					<h1 class="font-light"><i class="icon-users"></i></h1>
-					<h6>Expertos</h6>
-				</div>
-			</a>
-		</div> -->
-		<!-- Column -->
-	</div> <!-- Fin div.row -->
 
 <!-- Sección de estadísticas -->
 	<div class="row">

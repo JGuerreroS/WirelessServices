@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+    // Select2
+    $('.js-example-basic-single').select2();
+
     // cargar tabla de convenios
     $("#convenioTabla").load('views/contenido/extra/convenioTabla.php');
     // cargar tabla de clientes
@@ -12,6 +15,36 @@ $(document).ready(function() {
     $("#otrosTabla").load('views/contenido/extra/otrosTabla.php');
     // cargar grafica del inicio
     $("#grafica").load('views/contenido/extra/grafica.php');
+    // cargar tabla de facturacion
+    $("#facturacionTabla").load('views/contenido/extra/facturacionTabla.php');
+
+    /*Inicio de la Sección facturas en ready*/
+    $("#guardarFactura").click(function (e) {
+
+        
+
+        $.ajax({
+            type: "post",
+            url: "controllers/registroFactura.php",
+            data: $("#frmSaveFactura").serialize(),
+            success: function (r) {
+                if(r == 1){
+
+                    alertify.success("Factura registrada");
+                    $("#facturacionTabla").load('views/contenido/extra/facturacionTabla.php');
+                    $("#frmSaveFactura")[0].reset();
+
+                }else{
+
+                    alertify.error("No se pudo registrar");
+
+                }
+            }
+        });
+        e.preventDefault();
+        
+    });
+    /*Inicio de la Sección facturas en ready*/
 
     /*Inicio de la Sección Convenios en ready*/
 
@@ -645,7 +678,7 @@ function borrar(id) {
 
             }else if(r == 2){
 
-                alertify.warning('No puedes eliminar este cliente, debido a que tiene registrado dispositivos en la sección de INSTALACIÓNES');
+                alertify.warning('No puedes eliminar este cliente, debido a que tiene registrado dispositivos en la sección de INSTALACIONES');
                 
             }else{
 
