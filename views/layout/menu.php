@@ -19,7 +19,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="registroCliente"> <i class="icon-people"></i> Lista de clientes </a>
+                    <a class="dropdown-item" href="clientes"> <i class="icon-people"></i> Lista de clientes </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="instalaciones"> <i class="icon-cord"></i> Instalaciones </a>
                 </div>

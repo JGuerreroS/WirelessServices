@@ -238,7 +238,7 @@
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <form method="POST" action="reporte" target="_blank">
+                <form method="POST" action="perfil" target="_blank">
                     <input type="hidden" name="Icliente" id="Icliente">
                     <button type="submit" class="btn btn-info" onclick="print()" title="Ver más"> <i class="icon-print"></i> </button>
                 </form>

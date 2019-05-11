@@ -6,7 +6,7 @@ $(document).ready(function() {
     // cargar tabla de convenios
     $("#convenioTabla").load('views/contenido/extra/convenioTabla.php');
     // cargar tabla de clientes
-    $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
+    $("#clienteTabla").load('views/contenido/extra/clienteTabla.php');
     // cargar tabla de Instalaciones
     $("#instalacionTabla").load('views/contenido/extra/instalacionTabla.php');
     // cargar tabla de usuarios
@@ -353,7 +353,7 @@ $(document).ready(function() {
             data: $("#formRegistroCliente").serialize(),
             success: function (r) {
                 if(r == 1){
-                    $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
+                    $("#clienteTabla").load('views/contenido/extra/clienteTabla.php');
                     $("#formRegistroCliente")[0].reset();
                     $("#exampleModal").modal('hide');
                     alertify.success('Cliente registrado correctamente');
@@ -400,7 +400,7 @@ $(document).ready(function() {
             data: $("#formEdit").serialize(),
             success: function (r) {
                 if(r == 1){
-                    $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
+                    $("#clienteTabla").load('views/contenido/extra/clienteTabla.php');
                     $("#m_verMas").modal('hide');
                     $("#guardar").hide();
                     alertify.success('Registro actualizado con éxito');
@@ -673,7 +673,7 @@ function borrar(id) {
 
             if(r == 1){
 
-                $("#clienteTabla").load('views/contenido/extra/registroClienteTabla.php');
+                $("#clienteTabla").load('views/contenido/extra/clienteTabla.php');
                 alertify.success("Registro eliminado con éxito");
 
             }else if(r == 2){
