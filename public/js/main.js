@@ -641,6 +641,12 @@ $(document).ready(function() {
 
 /*--------------------------------Clientes---------------------------------------------*/
 
+// Imprimir perfil del cliente
+function print(){
+    var id_cliente = $("#id_cliente").val();
+    $("#Icliente").val(id_cliente);
+}
+
 // Cargar información en los inputs al abrir modal de editar
 function verMas(id) {
 
@@ -869,8 +875,3 @@ function borrarConvenio(id) {
 
 }
 /*--------------------------------Convenios---------------------------------------------*/
-
-function print(){
-    var id_cliente = $("#id_cliente").val();
-    $("#Icliente").val(id_cliente);
-}

@@ -353,20 +353,29 @@
 
     }
 
+    function reporteClientes(){
 
+        include 'core/conexion.php';
+
+        $sql = "SELECT rut, CONCAT(nombre, ' ', apellidos) AS cliente, telefono, email, c.fecha_registro,  id_estatus FROM clientes c
+        INNER JOIN instalaciones i ON (c.id = i.id_cliente) ORDER BY rut, id_estatus";
+
+        return mysqli_query($conn, $sql);
+
+    }
 
     function perfilCliente($id_cliente){
 
         include 'core/conexion.php';
 
-            $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion, c.fecha_registro, fecha_pago, telefono, email, id_estatus, costo FROM clientes c
-            INNER JOIN planes p ON (c.id_plan = p.id_plan)
-            INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)
-            INNER JOIN instalaciones i ON (c.id = i.id_cliente) WHERE id = $id_cliente";
+        $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion, c.fecha_registro, fecha_pago, telefono, email, id_estatus, costo FROM clientes c
+        INNER JOIN planes p ON (c.id_plan = p.id_plan)
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)
+        INNER JOIN instalaciones i ON (c.id = i.id_cliente) WHERE id = $id_cliente";
 
-            $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
 
-            return mysqli_fetch_array($result);
+        return mysqli_fetch_array($result);
 
     }
 

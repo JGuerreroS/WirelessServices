@@ -11,6 +11,11 @@
         <span class="icon-user-plus"></span> Registrar cliente
     </button>
 
+    <!-- Button generar pdf de todos los clientes -->
+    <a href="reporteClientes" target="_blank" class="btn btn-secondary" title="Generar reporte PDF de todos los clientes">
+        <span class="icon-document-file-pdf"></span> PDF
+    </a>
+
     <hr>
 
     <div id="clienteTabla"></div>

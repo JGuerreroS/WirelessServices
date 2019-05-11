@@ -4,7 +4,7 @@ class vistasModelo{
 
     protected function obtener_vistas_modelo($vistas){
 
-        $listaBlanca = ["inicio", "clientes", "convenios", "usuarios", "instalaciones", "otros", "perfil", "facturacion"];
+        $listaBlanca = ["inicio", "clientes", "convenios", "usuarios", "instalaciones", "otros", "perfil", "facturacion", "reporteClientes"];
 
         if (in_array($vistas,$listaBlanca)) {
             if (is_file("./views/contenido/" . $vistas. "-view.php")) {
@@ -13,6 +13,12 @@ class vistasModelo{
                     if($contenido == "./views/contenido/perfil-view.php"){
 
                         $contenido = 'perfil';
+
+                    }
+
+                    if($contenido == "./views/contenido/reporteClientes-view.php"){
+
+                        $contenido = 'reporteClientes';
 
                     }
 

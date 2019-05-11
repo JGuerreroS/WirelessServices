@@ -8,17 +8,25 @@
     class PDF extends FPDF{
     // Cabecera de página
     function Header(){
-        // Logo
-        $this->Image('public/img/9.png',10,8,33);
+        $this->Image('public/img/9.png',15,8,33);
         // Arial bold 15
+        $this->SetFont('Arial','I',10);
+        $this->Cell(65);
+        $this->Cell(50,4,utf8_decode('Tecno Acosta'),0,1,'C');
+        $this->Cell(65);
+        $this->Cell(50,4,utf8_decode('Wireless Services'),0,1,'C');
+        $this->Cell(65);
+        $this->Cell(50,4,utf8_decode('NIT: '),0,1,'L');
+        $this->Cell(65);
+        $this->Cell(50,4,utf8_decode('Dirección: '),0,1,'L');
+        $this->Cell(65);
+        $this->Cell(50,4,utf8_decode('Teléfono: '),0,1,'L');
+        $this->Cell(65);
+        $this->Cell(50,4,utf8_decode('Correo: '),0,1,'L');
+        $this->Ln(10);
+        $this->Cell(65);
         $this->SetFont('Arial','B',15);
-        // Movernos a la derecha
-        $this->Cell(70);
-        // Título
-        $this->Cell(50,30,utf8_decode('Perfil del cliente'),0,0,'C');
-        // Salto de línea
-        $this->Ln(30);
-        // Cabecera de la tabla
+        $this->Cell(50,30,utf8_decode('Perfil del cliente'),0,1,'C');
 
     }
 

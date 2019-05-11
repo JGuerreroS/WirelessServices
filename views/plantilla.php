@@ -6,7 +6,7 @@
 
     $vistasR = $vt->obtener_vistas_controlador();
 
-    if($vistasR == 'login' || $vistasR == '404' || $vistasR == 'perfil'):
+    if($vistasR == 'login' || $vistasR == '404' || $vistasR == 'perfil' || $vistasR == 'reporteClientes'):
 
         if ($vistasR == 'login') {
 
@@ -16,7 +16,13 @@
 
             require_once './views/contenido/perfil-view.php';
 
-        }else {
+        }elseif ($vistasR == 'reporteClientes') {
+
+            require_once './views/contenido/reporteClientes-view.php';
+
+        }
+        
+        else {
 
             require_once './views/contenido/404-view.php';
 
