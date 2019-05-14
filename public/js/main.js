@@ -21,8 +21,6 @@ $(document).ready(function() {
     /*Inicio de la Sección facturas en ready*/
     $("#guardarFactura").click(function (e) {
 
-        
-
         $.ajax({
             type: "post",
             url: "controllers/registroFactura.php",

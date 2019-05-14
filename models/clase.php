@@ -40,9 +40,13 @@
 
     function cargarClientes($datos){
 
+        session_start(); 
+
         include '../core/conexion.php';
 
-        $sql = "INSERT INTO clientes (nombre, apellidos, rut, telefono, email, id_plan, id_dispositivo, direccion, fecha_instalacion, fecha_pago, id_usuario, fecha_registro) VALUES ('$datos[nombre]', '$datos[apellido]', '$datos[rut]', '$datos[telefono]', '$datos[email]', $datos[plan], $datos[dispositivo], '$datos[direccion]', '$datos[fechaI]', $datos[fechaP], $datos[usuario], '$fecha')";
+        $clave = password_hash($datos['rut'], PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO clientes (nombre, apellidos, rut, telefono, email, clave, id_plan, id_dispositivo, direccion, fecha_instalacion, fecha_pago, id_usuario, fecha_registro) VALUES ('$datos[nombre]', '$datos[apellido]', '$datos[rut]', '$datos[telefono]', '$datos[email]', '$clave',  $datos[plan], $datos[dispositivo], '$datos[direccion]', '$datos[fechaI]', $datos[fechaP], $_SESSION[usuario], '$fecha')";
 
         if(mysqli_query($conn, $sql)){
 

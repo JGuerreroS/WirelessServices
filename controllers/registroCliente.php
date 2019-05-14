@@ -22,8 +22,6 @@ if( isset($_POST['nombre']) &&
     $fechaP = trim($_POST['fechaPagos']);
     $dispositivo = trim($_POST['dispositivo']);
 
-    session_start();
-
     $datos = array(
         'nombre' => $nombre,
         'apellido' => $apellido,
@@ -34,8 +32,7 @@ if( isset($_POST['nombre']) &&
         'plan' => $plan,
         'fechaI' => $fechaI,
         'fechaP' => $fechaP,
-        'dispositivo' => $dispositivo,
-        'usuario' => $_SESSION['usuario']
+        'dispositivo' => $dispositivo
     );
 
     include '../models/clase.php';
