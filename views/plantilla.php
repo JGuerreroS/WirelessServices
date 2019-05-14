@@ -6,11 +6,15 @@
 
     $vistasR = $vt->obtener_vistas_controlador();
 
-    if($vistasR == 'login' || $vistasR == '404' || $vistasR == 'perfil' || $vistasR == 'reporteClientes'):
+    if($vistasR == 'login' || $vistasR == 'iniciarSesion' || $vistasR == '404' || $vistasR == 'perfil' || $vistasR == 'reporteClientes'):
 
         if ($vistasR == 'login') {
 
             require_once './views/contenido/login-view.php';
+
+        }elseif($vistasR == 'iniciarSesion'){
+
+            require_once './views/contenido/iniciarSesion-view.php';
 
         }elseif($vistasR == 'perfil'){
 

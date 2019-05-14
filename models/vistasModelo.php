@@ -4,10 +4,10 @@ class vistasModelo{
 
     protected function obtener_vistas_modelo($vistas){
 
-        $listaBlanca = ["inicio", "clientes", "convenios", "usuarios", "instalaciones", "otros", "perfil", "facturacion", "reporteClientes"];
+        $listaBlanca = ["inicio", "clientes", "convenios", "usuarios", "instalaciones", "otros", "perfil", "facturacion", "reporteClientes", "bienvenido"];
 
-        if (in_array($vistas,$listaBlanca)) {
-            if (is_file("./views/contenido/" . $vistas. "-view.php")) {
+        if(in_array($vistas,$listaBlanca)) {
+            if(is_file("./views/contenido/" . $vistas. "-view.php")) {
                 $contenido = "./views/contenido/" . $vistas. "-view.php";
 
                     if($contenido == "./views/contenido/perfil-view.php"){
@@ -22,15 +22,19 @@ class vistasModelo{
 
                     }
 
-            } else {
+            }else {
 
                 $contenido = 'login';
 
             }
             
-        } elseif($vistas == 'login'){
+        }elseif($vistas == 'login'){
 
             $contenido = 'login';
+
+        }elseif($vistas == 'iniciarSesion'){
+
+            $contenido = 'iniciarSesion';
 
         }elseif($vistas == 'index'){
 

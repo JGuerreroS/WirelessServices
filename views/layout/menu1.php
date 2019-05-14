@@ -37,10 +37,10 @@
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">
                     <?php
-                    if($_SESSION['name'] == ''){
-                        header('Location: ./controllers/cerrarSesion.php');
+                    if($_SESSION['nombre'] == ''){
+                        header('Location: ./controllers/cerrarSesion2.php');
                     }else{
-                        echo $_SESSION['name'];
+                        echo $_SESSION['nombre'];
                     }
                 ?>
                 </a>

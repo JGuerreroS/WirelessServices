@@ -1,28 +1,53 @@
-$(function(){
+$(function(){ // Inicio de la función ready
 
     $("#aviso").hide();
 
-        $("#iniciar").click(function() {
+    // Inicio de sesión administrador
+    $("#iniciar").click(function() {
 
-            $.ajax({
-                type: "post",
-                url: "./controllers/check-login.php",
-                data: $("#formLogin").serialize(),
-                cache: false,
-                success: function(r) {
-                    if (r == 2) {
-                        
-                        $("#aviso").show().fadeOut(3000);
+        $.ajax({
+            type: "post",
+            url: "./controllers/check-login.php",
+            data: $("#formLogin").serialize(),
+            cache: false,
+            success: function(r) {
+                if (r == 2) {
+                    
+                    $("#aviso").show().fadeOut(3000);
 
-                    } else {
+                } else {
 
-                        window.location.href = "inicio";
-						
-                    }
+                    window.location.href = "inicio";
+                    
                 }
-            }); //ajax
-            return false;
+            }
+        }); //ajax
+        return false;
 
-        }); //click
+    }); //click
 
-});
+    // Inicio de sesión normal
+    $("#verify").click(function() {
+
+        $.ajax({
+            type: "post",
+            url: "controllers/check-login2.php",
+            data: $("#formLogin2").serialize(),
+            cache: false,
+            success: function(r) {
+                if (r == 2) {
+                    
+                    $("#aviso").show().fadeOut(3000);
+
+                } else {
+
+                    window.location.href = "bienvenido";
+                    
+                }
+            }
+        }); //ajax
+        return false;
+
+    }); //click
+
+}); // Fin de la función ready

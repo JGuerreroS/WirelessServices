@@ -16,6 +16,7 @@
 <div class="container">
 	<h2 class="titulo_login">TECNO ACOSTA</h2>
 	<h3 class="titulo_login">Wireless Services</h3>
+	<h4 class="titulo_login">Bienvenido</h4>
 	<div class="d-flex justify-content-center h-100">
 	
 		<div class="card">
@@ -24,14 +25,14 @@
 				<div class="d-flex justify-content-end social_icon">
 					
 					<span style="font-size:50px"><a href="https://www.facebook.com/tecnoacostaing/" class="icon-facebook2 icon-menu" target="_blank"></a></span>
-					
+						
 				</div>
 			</div>
 			<div class="card-body">
 
                 <div id="aviso">Error de usuario o contraseña</div>
 
-				<form id="formLogin">
+				<form id="formLogin2">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="icon-user"></i></span>
@@ -47,7 +48,7 @@
 					</div>
 					
 					<div class="form-group">
-						<input type="submit" id="iniciar" value="Ingresar" class="btn float-right login_btn">
+						<input type="submit" id="verify" value="Ingresar" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
@@ -62,7 +63,7 @@
 
 <!--Jquery de boostrap 4-->
 <script src="<?php echo SERVERURL; ?>public/lib/bootstrap4/bootstrap.min.js"></script>
-
+	
 <!--Jquery-->
 <script src="<?php echo SERVERURL; ?>public/lib/jquery.min.js"></script>
 

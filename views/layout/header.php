@@ -18,7 +18,7 @@
 
     <div class="container">
         <?php
-        if($_SESSION['nivel'] == 1){
+        if(isset($_SESSION['nivel']) == 1){
 
             include 'menu.php';
 
