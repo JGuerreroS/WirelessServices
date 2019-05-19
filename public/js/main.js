@@ -18,6 +18,22 @@ $(document).ready(function() {
     // cargar tabla de facturacion
     $("#facturacionTabla").load('views/contenido/extra/facturacionTabla.php');
 
+    /*Inicio de la Sección tuPerfil en ready*/
+    $.ajax({
+        url: "controllers/datosPerfil.php",
+        type: "GET",
+        success: function (r){
+            let res = JSON.parse(r);
+            $("#perfilRut").html(res.rut);
+            $("#perfilNombre").html(res.nombre);
+            $("#perfilApellidos").html(res.apellidos);
+            $("#perfilTelefono").html(res.telefono);
+            $("#perfilEmail").html(res.email);
+            $("#perfilResidencia").html(res.direccion);
+        }
+    });
+    /*Fin de la Sección tuPerfil en ready*/
+
     /*Inicio de la Sección facturas en ready*/
     $("#guardarFactura").click(function (e) {
 

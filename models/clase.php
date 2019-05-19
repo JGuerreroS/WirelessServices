@@ -1,5 +1,29 @@
 <?php
 
+    function datosPerfil($user){
+
+        include '../core/conexion.php';
+
+        $sql = "SELECT id, nombre, apellidos, rut, telefono, email, direccion FROM clientes WHERE id = $user";
+
+        $result = mysqli_query($conn,$sql);
+
+        $datos = new stdClass();
+
+        while ($row = mysqli_fetch_array($result)) {
+            $datos->id = $row[0];
+            $datos->nombre = $row[1];
+            $datos->apellidos = $row[2];
+            $datos->rut = $row[3];
+            $datos->telefono = $row[4];
+            $datos->email = $row[5];
+            $datos->direccion = $row[6];
+        }
+
+        return json_encode($datos);
+
+    }
+
     function registroInstalacion($datos){
 
         include '../core/conexion.php';
