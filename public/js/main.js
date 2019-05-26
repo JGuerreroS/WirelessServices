@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    datosCliente();
+
     // Select2
     $('.js-example-basic-single').select2();
 
@@ -19,22 +21,128 @@ $(document).ready(function() {
     $("#facturacionTabla").load('views/contenido/extra/facturacionTabla.php');
 
     /*Inicio de la Sección tuPerfil en ready*/
-    $.ajax({
-        url: "controllers/datosPerfil.php",
-        type: "GET",
-        success: function (r){
-            let res = JSON.parse(r);
-            $("#perfilRut").html(res.rut);
-            $("#perfilNombre").html(res.nombre);
-            $("#perfilApellidos").html(res.apellidos);
-            $("#perfilTelefono").html(res.telefono);
-            $("#perfilEmail").html(res.email);
-            $("#perfilResidencia").html(res.direccion);
-        }
-    });
-    /*Fin de la Sección tuPerfil en ready*/
 
-    /*Inicio de la Sección facturas en ready*/
+    // Ocultar al cargar vista de perfil del cliente
+    $("#SaveChangesUpdateUser,#ChangePass,#NotEditClient,#NotEditPass,#frmEditPass,#frmEditProfile,#SaveChangesPass").hide();
+
+    // Click al boton de editar tus datos
+    $("#editarPerfil").click(function (e){
+
+        $("#frmEditProfile,#NotEditClient,#SaveChangesUpdateUser,#ChangePass").show();
+        $(this).hide();
+        e.preventDefault();
+        
+    });
+
+    // Clic al boton de no editar perfil
+    $("#NotEditClient").click(function (e){
+
+        $("#frmEditProfile,#NotEditClient,#SaveChangesUpdateUser,#ChangePass").hide();
+        $("#editarPerfil").show();
+        e.preventDefault();
+        
+    });
+
+    // Click boton de cambiar contraseña
+    $("#ChangePass").click(function (e){
+
+        $("#NotEditClient,#frmEditProfile,#ChangePass,#SaveChangesUpdateUser").hide();
+        $("#NotEditPass,#frmEditPass,#SaveChangesPass").show();
+        e.preventDefault();
+        
+    });
+
+    // Click boton de no editar contraseña
+    $("#NotEditPass").click(function (e){
+
+        $("#frmEditPass,#SaveChangesPass,#NotEditPass").hide();
+        $("#editarPerfil").show();
+        e.preventDefault();
+        
+    });
+
+    // Editar datos de perfil
+    $("#SaveChangesUpdateUser").click(function (e){
+
+        $.ajax({
+            type: "post",
+            url: "controllers/updateProfile.php",
+            data: $("#frmEditProfile").serialize(),
+            success: function (res) {
+                if(res == 1){
+                    datosCliente();
+                    alertify.success("Datos actualizados corectamente!");
+                    $("#SaveChangesUpdateUser,#ChangePass,#NotEditClient,#NotEditPass,#frmEditPass,#frmEditProfile,#SaveChangesPass").hide();
+                    $("#editarPerfil").show();
+                }else{
+                    alertify.error("No se pudo actualizar los datos");
+                }
+            }
+        });
+        e.preventDefault();
+        
+    });
+
+    // Cargar datos del perfil del cliente
+    function datosCliente(){
+        $.ajax({
+            url: "controllers/datosPerfil.php",
+            type: "GET",
+            success: function (r){
+                let res = JSON.parse(r);
+                $("#perfilRut").html(res.rut).addClass("text-info");
+                $("#IperfilRut").val(res.rut);
+                $("#perfilNombre").html(res.nombre).addClass("text-info");
+                $("#IperfilNombre").val(res.nombre);
+                $("#perfilApellidos").html(res.apellidos).addClass("text-info");
+                $("#IperfilApellidos").val(res.apellidos);
+                $("#perfilTelefono").html(res.telefono).addClass("text-info");
+                $("#IperfilTelefono").val(res.telefono);
+                $("#perfilEmail").html(res.email).addClass("text-info");
+                $("#IperfilEmail").val(res.email);
+                $("#perfilResidencia").html(res.direccion).addClass("text-info");
+                $("#IperfilResidencia").val(res.direccion);
+            }
+        });
+    }
+
+    // Cambiar contraseña
+    $("#SaveChangesPass").click(function (e){
+
+        $.ajax({
+            type: "post",
+            url: "controllers/updatePassClient.php",
+            data: $("#frmEditPass").serialize(),
+            success: function (res){
+
+                if(res == 1){
+
+                    alertify.success("Contraseña actualizada con éxito");
+                    $("#SaveChangesUpdateUser,#ChangePass,#NotEditClient,#NotEditPass,#frmEditPass,#frmEditProfile,#SaveChangesPass").hide();
+                    $("#editarPerfil").show();
+                    $("#frmEditPass").trigger('reset');
+
+                }else if(res == 2){
+
+                    alertify.error("Error en contraseña actual");
+                    $("#frmEditPass").trigger('reset');
+                        
+                }else{
+
+                    alertify.warning("Las nuevas contraseñas no coinciden!");
+                    $("#frmEditPass").trigger('reset');
+                }
+
+            }
+        });
+
+        e.preventDefault();
+        
+    });
+    
+    /*Fin de la Sección tuPerfil en ready----------------------------------------------------------------------*/
+
+    /*Inicio de la Sección facturas en ready-------------------------------------------------------------------*/
     $("#guardarFactura").click(function (e) {
 
         $.ajax({

@@ -303,6 +303,57 @@
 
     }
 
+    function editarPass($datos){
+
+        include '../core/conexion.php';
+
+        session_start();
+
+        $result = mysqli_query($conn, "SELECT clave FROM clientes WHERE id = $_SESSION[usuario]");
+
+        $row = mysqli_fetch_array($result);
+
+        $hash = $row['clave'];
+	
+        if (password_verify($datos[0], $hash)){
+
+            $clave = password_hash($datos[1], PASSWORD_DEFAULT);
+
+            $sql = "UPDATE clientes SET clave = '$clave' WHERE id = $_SESSION[usuario]";
+
+            $result = mysqli_query($conn, $sql);
+
+            // mysqli_free_result($result);
+            mysqli_close($conn);
+            
+            return 1;
+        
+        } else {
+
+            return 2;
+
+        }
+
+    }
+
+    function editarProfile($datos){
+
+        include '../core/conexion.php';
+
+        $sql = "UPDATE clientes SET nombre = '$datos[nombre]', apellidos = '$datos[apellidos]', telefono = '$datos[telefono]', email = '$datos[correo]', direccion = '$datos[residencia]' WHERE rut = '$datos[cliente]'";
+
+        if(mysqli_query($conn, $sql)){
+
+            return 1;
+
+        }else {
+
+            return 2;
+
+        }
+
+    }
+
     function editarInstalacion($datos){
 
         include '../core/conexion.php';

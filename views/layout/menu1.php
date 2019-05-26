@@ -1,30 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="bienvenido">
+    <!-- <a class="navbar-brand" href="bienvenido">
         <img src="public/img/9.png" width="60" height="40" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="#"> <i class="icon-monetization_on"></i> Reportar pago </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="tuPerfil"> <i class="icon-perm_contact_calendar"></i> Perfil</a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="#"> <i class="icon-perm_data_setting"></i> Soporte técnico</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="icon-router"></i> Dispositivos</a>
+                <a class="nav-link" href="#"> <i class="icon-router"></i> Dispositivos</a> -->
             </li>
 
             <!-- <li class="nav-item dropdown">

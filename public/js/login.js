@@ -41,11 +41,12 @@ $(function(){ // Inicio de la función ready
 
                 } else {
 
-                    window.location.href = "bienvenido";
+                    window.location.href = "tuPerfil";
                     
                 }
             }
         }); //ajax
+        
         return false;
 
     }); //click
