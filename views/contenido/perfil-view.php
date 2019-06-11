@@ -85,30 +85,28 @@
         $pdf->SetFont('Arial','I',10);
         $pdf->Cell(32,10,utf8_decode('Estatus:'),0,0,'L',0);
         $pdf->SetFont('Arial','B',10);
-        if($datos[10] == 1){
-            $pdf->Cell(40,10,'ACTIVO',0,1,'L',0);
-            $pdf->SetFont('Arial','I',10);
-            $pdf->Cell(32,10,utf8_decode('Día de pago:'),0,0,'L',0);
-            $pdf->SetFont('Arial','B',10);
-            $pdf->Cell(40,10,$datos[7],0,1,'L',0);
+        
+        $pdf->Cell(40,10,'ACTIVO',0,1,'L',0);
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,utf8_decode('Día de pago:'),0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,$datos[7],0,1,'L',0);
 
-            $pdf->SetFont('Arial','I',10);
-            $pdf->Cell(32,10,'Dispositivo:',0,0,'L',0);
-            $pdf->SetFont('Arial','B',10);
-            $pdf->Cell(40,10,utf8_decode($datos[4]),0,1,'L',0);
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,'Dispositivo:',0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,utf8_decode($datos[4]),0,1,'L',0);
 
-            $pdf->SetFont('Arial','I',10);
-            $pdf->Cell(32,10,'Plan:',0,0,'L',0);
-            $pdf->SetFont('Arial','B',10);
-            $pdf->Cell(40,10,utf8_decode($datos[3]),0,1,'L',0);
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,'Plan:',0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,utf8_decode($datos[3]),0,1,'L',0);
 
-            $pdf->SetFont('Arial','I',10);
-            $pdf->Cell(32,10,'Costo del plan:',0,0,'L',0);
-            $pdf->SetFont('Arial','B',10);
-            $pdf->Cell(40,10,utf8_decode($datos[11]." Pesos"),0,1,'L',0);
-        }else{
-            $pdf->Cell(40,10,'INACTIVO',0,1,'L',0);
-        }
+        $pdf->SetFont('Arial','I',10);
+        $pdf->Cell(32,10,'Costo del plan:',0,0,'L',0);
+        $pdf->SetFont('Arial','B',10);
+        $pdf->Cell(40,10,utf8_decode($datos[10]." Pesos"),0,1,'L',0);
+        
 
         $pdf->Output();
         

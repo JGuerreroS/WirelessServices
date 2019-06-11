@@ -1,0 +1,10 @@
+1- en clienteModal mejorar la parte del botón de generar perfil del cliente, ya que actualmente se realiza mediante un formulario
+
+2- en asignación de dispositivos cuando se registra un cliente, seleccionarlos con checkbox, para evitar que en dispositivos se registren de esta manera: ANTENA UBIQUITI NANOLOCO M5 5GHZ + ROUTER TP LINK, lo correcto seria solo un registro por cada dispositivo y no estar sumando, como actualmente
+
+3- desarrollar menu para clientes, donde puedan:
+    3.1- solicitar soporte tecnico
+    3.2- ver su perfil
+    3.3- cambiar su contraseña
+    3.4- solicitar su factura de servicio
+    3.5- ver su historico de pagos

@@ -24,24 +24,6 @@
 
     }
 
-    function registroInstalacion($datos){
-
-        include '../core/conexion.php';
-
-        $sql = "INSERT INTO instalaciones (id_cliente, id_dispositivo, serial, materiales, fecha_registro, id_estatus) VALUES ($datos[cliente], $datos[dispositivo], '$datos[serial]', '$datos[material]', '$fecha', 1)";
-
-        if(mysqli_query($conn, $sql)){
-
-            return 1;
-
-        }else{
-
-            return 2;
-
-        }
-
-    }
-
     function cargarConvenio($datos){
 
         include '../core/conexion.php';
@@ -436,8 +418,7 @@
 
         include 'core/conexion.php';
 
-        $sql = "SELECT rut, CONCAT(nombre, ' ', apellidos) AS cliente, telefono, email, c.fecha_registro,  id_estatus FROM clientes c
-        INNER JOIN instalaciones i ON (c.id = i.id_cliente) ORDER BY rut, id_estatus";
+        $sql = "SELECT rut, CONCAT(nombre, ' ', apellidos) AS cliente, telefono, email, fecha_registro FROM clientes ORDER BY rut";
 
         return mysqli_query($conn, $sql);
 
@@ -447,10 +428,9 @@
 
         include 'core/conexion.php';
 
-        $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion, c.fecha_registro, fecha_pago, telefono, email, id_estatus, costo FROM clientes c
+        $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion, c.fecha_registro, fecha_pago, telefono, email, costo FROM clientes c
         INNER JOIN planes p ON (c.id_plan = p.id_plan)
-        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)
-        INNER JOIN instalaciones i ON (c.id = i.id_cliente) WHERE id = $id_cliente";
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo) WHERE id = $id_cliente";
 
         $result = mysqli_query($conn, $sql);
 
@@ -596,18 +576,6 @@
 
         $sql = "SELECT id_convenio, nombre_cliente, direccion, modelo FROM convenios c
         INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo) WHERE id_estatus = 1";
-
-        return mysqli_query($conn, $sql);
-
-    }
-
-    function verInstalaciones(){
-
-        include '../../../core/conexion.php';
-
-        $sql = "SELECT id_instalacion, rut, modelo, serial FROM instalaciones i
-        INNER JOIN clientes c ON (i.id_cliente = c.id)
-        INNER JOIN modelos m ON (i.id_dispositivo = m.id_modelo) WHERE id_estatus = 1";
 
         return mysqli_query($conn, $sql);
 

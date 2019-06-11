@@ -39,11 +39,10 @@
             $this->SetFont('Arial','B',10);
             $this->Cell(15,10,utf8_decode('N°'),1,0,'C',0);
             $this->Cell(25,10,'RUT',1,0,'C',0);
-            $this->Cell(80,10,'Nombres',01,0,'C',0);
-            $this->Cell(25,10,utf8_decode('Teléfono'),1,0,'C',0);
-            $this->Cell(75,10,'Correo',1,0,'C',0);
-            $this->Cell(30,10,'Fecha registro',1,0,'C',0);
-            $this->Cell(25,10,utf8_decode('Estatus'),1,1,'C',0);
+            $this->Cell(90,10,'Nombres',1,0,'C',0);
+            $this->Cell(30,10,utf8_decode('Teléfono'),1,0,'C',0);
+            $this->Cell(80,10,'Correo',1,0,'C',0);
+            $this->Cell(30,10,'Fecha registro',1,1,'C',0);
         }
 
         // Pie de página
@@ -74,16 +73,10 @@
         while ($row = mysqli_fetch_array($datos)) { $nro++;
             $pdf->Cell(15,10,$nro,1,0,'C',0);
             $pdf->Cell(25,10,$row[0],1,0,'C',0); // Rut
-            $pdf->Cell(80,10,utf8_decode($row[1]),1,0,'L',0); // Nombres
-            $pdf->Cell(25,10,utf8_decode($row[2]),1,0,'C',0); // Correo
-            $pdf->Cell(75,10,utf8_decode($row[3]),1,0,'C',0); // Teléfono
+            $pdf->Cell(90,10,utf8_decode($row[1]),1,0,'L',0); // Nombres
+            $pdf->Cell(30,10,utf8_decode($row[2]),1,0,'C',0); // Teléfono
+            $pdf->Cell(80,10,utf8_decode($row[3]),1,0,'C',0); // Correo
             $pdf->Cell(30,10,str_replace('-', '/', date('d-m-Y', strtotime($row[4]))),1,0,'C',0); // Fecha
-
-            if($row[5] == 1){ // Estatus
-                $pdf->Cell(25,10,'ACTIVO',1,1,'C',0);
-            }else{
-                $pdf->Cell(25,10,'INACTIVO',1,1,'C',0);
-            }
         }
 
         $pdf->Output();
