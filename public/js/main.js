@@ -230,28 +230,12 @@ $(document).ready(function() {
     /*Fin de la Sección Convenios en ready*/
 
 
-    /*Inicio de la Sección Instalaciones en ready*/
-
-    $("#serial,#material,#lSerial,#lMaterial,#buscarOtro,#guardarInstalacionEditada").hide();
-    $("#registrarInstalacion").attr('disabled' , true);
-
-    // Boton de cerrar modal de editar/ver mas
-    $("#cerrarModalEditarInstalacion").click(function (e) {
-
-        $("#guardarInstalacionEditada").hide();
-        $("#editarInstalacion").show();
-        e.preventDefault();
-        
-    });
-
-    /*Fin de la Sección Instalaciones en ready*/
-
     /*Inicio de la Sección Otros en ready*/
 
     // Ocultar botón de guardar en editar planes
     $("#guardarPlanEditado").hide();
 
-    $("#EditarPlan").click(function (e) {
+    $("#EditarPlan").click(function (e){
 
         $("#planEditarNombre,#planEditarCosto").attr('disabled' , false);
         $("#guardarPlanEditado").show();
