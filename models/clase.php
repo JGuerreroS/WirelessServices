@@ -327,19 +327,18 @@
 
         include '../core/conexion.php';
 
-        $verificar = mysqli_query($conn, "SELECT COUNT(id_cliente) FROM instalaciones WHERE id_cliente = $id_cliente AND id_estatus = 1");
+        $sql = "UPDATE clientes SET id_estatus = 2 WHERE id = $id_cliente";
 
-        $total = mysqli_fetch_array($verificar);
+        $result = mysqli_query($conn, $sql);
 
-        if($total[0] > 0){
+        if($result){
 
-            return 2;
+            mysqli_close($conn);
+            return 1;
 
         }else{
 
-            $sql = "DELETE FROM clientes WHERE id = $id_cliente";
-
-            return mysqli_query($conn, $sql); 
+            return 2;
 
         }
 
@@ -461,9 +460,9 @@
 
         $sql = "SELECT c.id, CONCAT(nombre, ' ', apellidos) AS cliente, rut, plan, modelo, direccion FROM clientes c
         INNER JOIN planes p ON (c.id_plan = p.id_plan)
-        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo)";
+        INNER JOIN modelos m ON (c.id_dispositivo = m.id_modelo) WHERE id_estatus = 1";
 
-        return $result = mysqli_query($conn, $sql);
+        return mysqli_query($conn, $sql);
 
     }
 

@@ -537,21 +537,19 @@ function verMas(id) {
 }
 
 // Borrar cliente
-function borrar(id) {
+function borrar(id){
+
+    // alert(id);
 
     alertify.confirm('Eliminar registro', '¿Seguro que deseas eliminar este registro?', function(){ 
     
-        $.get("controllers/registroClienteBorrar.php", {id_cliente : id}, function (r) {
+        $.get("controllers/registroClienteBorrar.php", {id_cliente : id}, function (r){
 
             if(r == 1){
 
                 $("#clienteTabla").load('views/contenido/extra/clienteTabla.php');
                 alertify.success("Registro eliminado con éxito");
 
-            }else if(r == 2){
-
-                alertify.warning('No puedes eliminar este cliente, debido a que tiene registrado dispositivos en la sección de INSTALACIONES');
-                
             }else{
 
                 alertify.error("No se pudo eliminar el registro");
