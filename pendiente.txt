@@ -8,3 +8,5 @@
     3.3- cambiar su contraseña
     3.4- solicitar su factura de servicio
     3.5- ver su historico de pagos
+
+4- en usuarios agregar cambiar contraseña

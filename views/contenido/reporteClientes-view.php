@@ -76,7 +76,7 @@
             $pdf->Cell(90,10,utf8_decode($row[1]),1,0,'L',0); // Nombres
             $pdf->Cell(30,10,utf8_decode($row[2]),1,0,'C',0); // Teléfono
             $pdf->Cell(80,10,utf8_decode($row[3]),1,0,'C',0); // Correo
-            $pdf->Cell(30,10,str_replace('-', '/', date('d-m-Y', strtotime($row[4]))),1,0,'C',0); // Fecha
+            $pdf->Cell(30,10,str_replace('-', '/', date('d-m-Y', strtotime($row[4]))),1,1,'C',0); // Fecha
         }
 
         $pdf->Output();

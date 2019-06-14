@@ -368,9 +368,14 @@
 
         include 'core/conexion.php';
 
-        $sql = "SELECT rut, CONCAT(nombre, ' ', apellidos) AS cliente, telefono, email, fecha_registro FROM clientes ORDER BY rut";
+        $sql = "SELECT rut, CONCAT(nombre, ' ', apellidos) AS cliente, telefono, email, fecha_registro FROM clientes WHERE id_estatus = 1 ORDER BY rut";
 
-        return mysqli_query($conn, $sql);
+        $result = mysqli_query($conn,$sql);
+
+        // mysqli_free_result($conn);
+        mysqli_close($conn);
+
+        return $result;
 
     }
 

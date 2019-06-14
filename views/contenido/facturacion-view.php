@@ -17,10 +17,7 @@
                             <option value="">Seleccione cliente</option>
                             <?php
                                 include 'core/conexion.php';
-                                $sql = "SELECT id, CONCAT(rut, ' ', nombre, ' ' , apellidos) AS cliente, id_plan FROM clientes c
-                                INNER JOIN instalaciones i ON (c.id = i.id_cliente)
-                                WHERE id_estatus = 1
-                                ORDER BY cliente";
+                                $sql = "SELECT id, CONCAT(rut, ' ', nombre, ' ' , apellidos) AS cliente, id_plan FROM clientes WHERE id_estatus = 1 ORDER BY cliente";
                                 $result = mysqli_query($conn,$sql);
                                 while($row = mysqli_fetch_array($result)){ ?>
                                     <option value="<?php echo $row[0]."-".$row[2]; ?>"> <?php echo $row[1] ?> </option>
