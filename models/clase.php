@@ -309,7 +309,7 @@
 
         include '../core/conexion.php';
 
-        $sql = "UPDATE users SET Name='$datos[nombre]', Usuario='$datos[correo]', nivel='$datos[nivel]' where Id=$datos[id_usuario]";
+        $sql = "UPDATE users SET Name='$datos[nombre]', Usuario='$datos[correo]', nivel='$datos[nivel]' WHERE Id=$datos[id_usuario]";
 
         if(mysqli_query($conn, $sql)){
 

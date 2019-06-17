@@ -379,22 +379,58 @@ $(document).ready(function() {
         
     });
 
-    /*----------------------Fin de la Sección de Clientes en ready----------------------------------------*/
+    /*----------------------Fin de la Sección de Clientes en ready---------------*/
 
 /*-------------------------------------------------------------------------------*/
 
     /*Inicio de la Sección de Usuarios en ready*/
 
-    // ocultar boton de guardar al editar usuario
-    $("#guardarUsuarioEditado").hide();
+    // Elementos ocultos
+    $("#frmPass,#saveChanges,#savePass,#Cpass").hide();
 
-    // funcion que se ejecutar al pulsar el boton de editar usuarios
-    $("#editarUsuario").click(function(e) {
-
-        $("#guardarUsuarioEditado").show();
-        $("#vNombre,#vUsuario,#vNivel,#vFecha").attr('disabled', false);
+    // Botón de editar usuario
+    $("#editarUsuario").click(function(e){
+        
+        $("#editarUsuario,#frmPass,#savePass").hide();
+        $("#Cpass,#saveChanges,#frmEditarUsuario").show();
+        $("#vNombre,#vUsuario,#vNivel").attr('disabled', false);
         e.preventDefault();
 
+    });
+
+    // Botón de editar contraseña
+    $("#Cpass").click(function(e){
+        
+        $("#editarUsuario,#frmPass,#savePass").show();
+        $("#frmEditarUsuario,#Cpass,#saveChanges").hide();
+        e.preventDefault();
+
+    });
+
+    // Guardar cambios del usuario al editarlo
+    $("#saveChanges").click(function(e){
+
+        $.ajax({
+            type: "post",
+            url: "controllers/registroUsuarioEditar.php",
+            data: $("#frmEditarUsuario").serialize(),
+            success: function (r) {
+                if (r == 1) {
+
+                    $("#verUsuarios").modal('hide');
+                    $("#saveChanges").hide();
+                    $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
+                    alertify.success("Usuario actualizado exitosamente");
+
+                } else {
+
+                    alertify.error("No se pudo actualizar el registro");
+
+                }
+            }
+        });
+        e.preventDefault();
+        
     });
 
     // Registrar nuevo usuario
@@ -415,32 +451,6 @@ $(document).ready(function() {
                     alertify.success("Usuario registrado con éxito");  
                 }else{
                     alertify.error("No se pudo registrar el usuario");
-                }
-            }
-        });
-        e.preventDefault();
-        
-    });
-
-    // Guardar cambios del usuario al editarlo
-    $("#guardarUsuarioEditado").click(function (e) {
-
-        $.ajax({
-            type: "post",
-            url: "controllers/registroUsuarioEditar.php",
-            data: $("#frmEditarUsuario").serialize(),
-            success: function (r) {
-                if (r == 1) {
-
-                    $("#verUsuarios").modal('hide');
-                    $("#guardarUsuarioEditado").hide();
-                    $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
-                    alertify.success("Usuario actualizado exitosamente");
-
-                } else {
-
-                    alertify.error("No se pudo actualizar el registro");
-
                 }
             }
         });

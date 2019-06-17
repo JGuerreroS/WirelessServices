@@ -37,16 +37,14 @@
                         <div class="col-6">
 
                             <label>Contraseña</label>
-                            <input type="password" autofocus="autofocus" class="form-control" id="pass1" name="pass1"
-                                placeholder="Ingrese su contraseña" required>
+                            <input type="password" autofocus="autofocus" class="form-control" id="pass1" name="pass1" placeholder="Ingrese su contraseña" required>
 
                         </div>
 
                         <div class="col-6">
 
                             <label>Repetir contraseña</label>
-                            <input type="password" class="form-control" id="pass2" name="pass2"
-                                placeholder="Repetir contraseña" required>
+                            <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Repetir contraseña" required>
 
                         </div>
                     </div>
@@ -80,15 +78,17 @@
             <form id="frmEditarUsuario">
 
                 <div class="card" style="width: 20rem; margin:auto">
+
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
+
+                        <li class="list-group-item editUsuario">
 
                             <label>Nombre:</label>
                             <input type="text" class="form-control" name="vNombre" id="vNombre">
 
                         </li>
 
-                        <li class="list-group-item">
+                        <li class="list-group-item editUsuario">
 
                             <label>Usuario:</label>
                             <input type="text" class="form-control" name="vUsuario" id="vUsuario">
@@ -96,19 +96,43 @@
 
                         </li>
 
-                        <li class="list-group-item">
+                        <li class="list-group-item editUsuario">
 
                             <label>Nivel de usuario:</label>
-                            <select class="form-control form-control-sm" id="vNivel" name="vNivel">
+                            <select class="form-control" id="vNivel" name="vNivel">
                                 <option value="1"> Usuario administrador </option>
                                 <option value="2"> Usuario común </option>
                             </select>
 
                         </li>
 
-                        <li class="list-group-item" id="vFecha"></li>
+                        <li class="list-group-item editUsuario" id="vFecha"></li>
 
                     </ul>
+
+                </div>
+
+            </form>
+
+            <form id="frmPass">
+
+                <div class="card" style="width: 20rem; margin:auto">
+                    
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">
+
+                            <label>Contraseña actual:</label>
+                            <input type="text" class="form-control" name="passActual" id="passActual">
+                            <label>Nueva contraseña:</label>
+                            <input type="text" class="form-control" name="passNueva" id="passNueva">
+                            <label>Repetir contraseña:</label>
+                            <input type="text" class="form-control" name="passNewRep" id="passNewRep">
+
+                        </li>
+
+                    </ul>
+
                 </div>
 
             </form>
@@ -117,8 +141,10 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-warning" id="editarUsuario">Editar</button>
-                <button type="button" class="btn btn-success" id="guardarUsuarioEditado">Guardar</button>
+                <button type="button" class="btn btn-warning" title="Editar datos" id="editarUsuario">Editar</button>
+                <button type="button" class="btn btn-warning" title="Cambiar contraseña" id="Cpass"> <i class="icon-key"></i> </button>
+                <button type="button" class="btn btn-success" title="Guardar cambios" id="saveChanges">Guardar</button>
+                <button type="button" class="btn btn-success" title="Guardar contraseña" id="savePass">Guardar</button>
             </div>
 
         </div>
