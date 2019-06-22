@@ -433,6 +433,37 @@ $(document).ready(function() {
         
     });
 
+    // Guardar cambios de la contraseña
+    $("#savePass").click(function(e){
+
+        $.ajax({
+            type: "post",
+            url: "controllers/cambioPassUser.php",
+            data: $("#frmPass").serialize(),
+            success: function (r){
+                if (r == 1) {
+
+                    $("#verUsuarios").modal('hide');
+                    $("#savePass").hide();
+                    $("#usuarioTabla").load('views/contenido/extra/usuariosTabla.php');
+                    alertify.success("Contraseña actualizado correctamente!");
+
+                }else if(r == 2){
+
+                    alertify.error("No se pudo actualizar la contraseña");
+
+                }else{
+
+                    alertify.warning("Las contraseñas no coinciden!");
+
+                }
+            }
+        });
+
+        e.preventDefault();
+        
+    });
+
     // Registrar nuevo usuario
     $("#enviar").click(function (e) {
 

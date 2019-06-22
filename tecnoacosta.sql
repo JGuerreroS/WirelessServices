@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2019 a las 05:57:09
+-- Tiempo de generación: 22-06-2019 a las 02:06:38
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -61,6 +61,7 @@ CREATE TABLE `clientes` (
   `direccion` varchar(150) COLLATE latin1_general_ci NOT NULL,
   `fecha_instalacion` date NOT NULL,
   `fecha_pago` int(2) NOT NULL,
+  `id_estatus` int(11) NOT NULL DEFAULT '1',
   `id_usuario` int(11) NOT NULL,
   `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
@@ -69,9 +70,11 @@ CREATE TABLE `clientes` (
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `rut`, `telefono`, `email`, `clave`, `id_plan`, `id_dispositivo`, `direccion`, `fecha_instalacion`, `fecha_pago`, `id_usuario`, `fecha_registro`) VALUES
-(3, 'JOHN ALEXANDER', 'GUERRERO SOLON', '18762905-1', '0414-232573', 'guerrerojohnalexander@gmail.com', '$2y$10$Z8JWmnWVebpiMenUoUtveu27PRqXhA5HIduu.qpEHtibcB83dDt9O', 5, 13, 'SAN AGUSTÍN', '2019-05-13', 13, 1, '2019-05-13'),
-(4, 'ZULAY TRINIDAD', 'BOHORQUEZ DE GUERRERO', '18959181-5', '04168195691', 'BOHORQUEZZULAY95@GMAIL.COM', '$2y$10$NYJ32qtFp7sKVH4q0oU3Ku7P9k0CGRQKsWfLu96ImBXGQNH3CYbRW', 5, 14, 'CARACAS', '2019-06-10', 11, 40, '2019-06-11');
+INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `rut`, `telefono`, `email`, `clave`, `id_plan`, `id_dispositivo`, `direccion`, `fecha_instalacion`, `fecha_pago`, `id_estatus`, `id_usuario`, `fecha_registro`) VALUES
+(3, 'JOHN ALEXANDER', 'GUERRERO SOLON', '18762905-1', '0414-232573', 'guerrerojohnalexander@gmail.com', '$2y$10$Z8JWmnWVebpiMenUoUtveu27PRqXhA5HIduu.qpEHtibcB83dDt9O', 5, 13, 'SAN AGUSTÍN', '2019-05-13', 13, 1, 1, '2019-05-13'),
+(5, 'ZULAY', 'TRINIDAD', '18959181-8', '04168195691', 'BOHORQUEZZULAY95@GMAIL.COM', '$2y$10$WY2BLJET8wwlsO.sOGJgkOiVwFWMQdbGtHylEkBDCvtrivC15bjEi', 6, 16, 'SAN AGUSTÍN', '2019-06-12', 12, 2, 1, '2019-06-12'),
+(6, 'ZULAY', 'TRINIDAD', '18959181-7', '04168195691', 'BOHORQUEZZULAY95@GMAIL.COM', '$2y$10$.M6V4i5Vtw2Sx3sZCd.Wj.jzjlMnt3wCUqjQeCmoE8rVWPAhiw8n2', 2, 13, 'SAN AGUSTÍN', '2019-06-12', 13, 2, 1, '2019-06-13'),
+(7, 'JOHN', 'GUERRERO', '10176295-5', '5455121555', 'sdvsd@dfg.com', '$2y$10$vV8EpV5d3OJWDdUThxl6xeXqu.bN28IyU7q4VG/o74FPf8VNranDC', 1, 13, 'FWEFGER', '2019-06-12', 20, 1, 1, '2019-06-13');
 
 -- --------------------------------------------------------
 
@@ -193,7 +196,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Id`, `Name`, `Usuario`, `Password`, `nivel`, `id_usuario`, `fecha_registro`) VALUES
-(1, 'NELSON ACOSTA', 'nelsonacostavargas@yahoo.com', '$2y$10$ldWWDyFFM1.wNq5Gy0KVjuQant0q7OTQ6vkfxN7Fi9eWjajIDz1.a', 1, 1, '2019-02-03');
+(1, 'NELSON ACOSTA', 'nelsonacostavargas@yahoo.com', '$2y$10$ldWWDyFFM1.wNq5Gy0KVjuQant0q7OTQ6vkfxN7Fi9eWjajIDz1.a', 1, 1, '2019-02-03'),
+(2, 'JOHN', 'guerrerojohnalexander@gmail.com', '$2y$10$58gPaupTYwweb21WXl7yfO.NzO9INBFBHIBR40yZcb3EQzMkMTZ1G', 1, 1, '2019-06-13');
 
 --
 -- Índices para tablas volcadas
@@ -261,7 +265,7 @@ ALTER TABLE `causas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `convenios`
@@ -297,7 +301,7 @@ ALTER TABLE `planes`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` mediumint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` mediumint(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

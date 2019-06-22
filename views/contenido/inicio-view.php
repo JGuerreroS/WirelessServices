@@ -45,13 +45,13 @@
 									</div>
 								</div>
 
-								<div class="col-6 resumen">
+								<!-- <div class="col-6 resumen">
 									<div class="bg-dark p-10 text-white text-center">
 										<i class="icon-router"></i>
 										<h5 class="m-b-0 m-t-5"> <?php ?> </h5>
 										<small class="font-light">Dispositivos instalados</small>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<!-- column -->

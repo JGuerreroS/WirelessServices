@@ -9,4 +9,8 @@
     3.4- solicitar su factura de servicio
     3.5- ver su historico de pagos
 
-4- en usuarios agregar cambiar contraseña
+4- Solo poder cambiar su propia contraseña en usuarios
+
+    cambios:
+    - Se agrego cambiar contraseña para el usuario
+    - Corrección del conteo de clientes activos en la página de inicio

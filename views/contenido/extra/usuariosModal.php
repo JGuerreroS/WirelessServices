@@ -123,11 +123,11 @@
                         <li class="list-group-item">
 
                             <label>Contraseña actual:</label>
-                            <input type="text" class="form-control" name="passActual" id="passActual">
+                            <input type="password" class="form-control" name="passActual" id="passActual">
                             <label>Nueva contraseña:</label>
-                            <input type="text" class="form-control" name="passNueva" id="passNueva">
+                            <input type="password" class="form-control" name="passNueva" id="passNueva">
                             <label>Repetir contraseña:</label>
-                            <input type="text" class="form-control" name="passNewRep" id="passNewRep">
+                            <input type="password" class="form-control" name="passNewRep" id="passNewRep">
 
                         </li>
 

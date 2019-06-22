@@ -148,7 +148,7 @@
 
         include 'core/conexion.php';
 
-        $sql = "SELECT COUNT(id) FROM clientes";
+        $sql = "SELECT COUNT(id) FROM clientes WHERE id_estatus = 1";
 
         $result = mysqli_query($conn, $sql);
 
@@ -300,6 +300,38 @@
         }else {
 
             return 2;
+
+        }
+
+    }
+
+    function editarPassUser($datos){
+
+        include '../core/conexion.php';
+
+        session_start();
+
+        $result = mysqli_query($conn, "SELECT Password FROM users WHERE Id = $_SESSION[usuario]");
+
+        $row = mysqli_fetch_array($result);
+
+        $hash = $row['Password'];
+	
+        if (password_verify($datos['actual'], $hash)){
+
+            $clave = password_hash($datos['nueva'], PASSWORD_DEFAULT);
+
+            $sql = "UPDATE users SET Password='$clave' WHERE Id = $_SESSION[usuario]";
+
+            if(mysqli_query($conn, $sql)){
+
+                return 1;
+
+            }else {
+
+                return 2;
+
+            }
 
         }
 
